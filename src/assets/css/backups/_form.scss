@@ -1,0 +1,121 @@
+@import "mixin";
+.input-1 {
+    @include input();
+    border: #eee 1px solid;
+    height: 42px;
+}
+.input-2 {
+    @include input();
+    border: #e4e4e4 1px solid;
+    height: 42px;
+    border-radius: 6px;
+  }
+  .input-3 {
+    @include input();
+    border: none;
+    border-bottom: #b7b7b7 1px solid;
+    height: 50px;
+    &:focus{
+        box-shadow: none !important;
+        outline: none;
+    }
+  }
+
+.input-4 {
+    @include input-4();
+    @include placeholder {
+        
+        font-size: 18px;
+        color: #fff;
+      }
+    height: 54px;
+    &:focus{
+        background: rgba(255, 255, 255, .2);
+        box-shadow: none !important;
+        outline: none;
+    }
+}
+.input-5 {
+    @include input();
+    border: #bcddbe 1px solid;
+    border-radius: 6px;
+    height: 54px;
+    color: #333;
+    @include placeholder {
+        
+        font-size: 18px;
+        color: #333;
+        opacity: 1;
+      }
+    &:focus{
+        outline: none;
+    }
+}
+.selectOption {
+    appearance: none;
+    // -moz-appearance: none;
+    // -ms-appearance: none;
+    // -o-appearance: none;
+    // -webkit-appearance: none;
+    // background: rgba(255, 255, 255, 1) url(../images/angle-arrow-down.png) center right 10px no-repeat;
+    background-size: 10px;
+    padding: 0 0.75rem;
+    border: #eee 1px solid;
+    width: 100%;
+    height: 42px;
+}
+
+.selectOption-3 {
+    appearance: none;
+    // -moz-appearance: none;
+    // -ms-appearance: none;
+    // -o-appearance: none;
+    // -webkit-appearance: none;
+    // background: rgba(255, 255, 255, 1) url(../../public/images/angle-arrow-down.png) bottom 13px right 10px no-repeat;
+    background-size: 10px;
+    padding: 0 0.75rem;
+    border: #eee 1px solid;
+    width: 100%;
+    border: none;
+    border-bottom: #b7b7b7 1px solid;
+    height: 50px;
+    &:focus{
+        box-shadow: none !important;
+    }
+}
+
+
+.textArea-1{
+    @include input-4();
+    @include placeholder {
+        
+        font-size: 18px;
+        color: #fff;
+      }
+    resize: none;
+    height: 136px;
+    &:focus{
+        box-shadow: none !important;
+        background: rgba(255, 255, 255, .2);
+    }
+}
+.textArea-2{
+    @include input();
+    color: #333;
+    border: #bcddbe 1px solid;
+    border-radius: 6px;
+    @include placeholder {
+        
+        font-size: 18px;
+        color: #333;
+      }
+    resize: none;
+    height: 136px;
+    &:focus{
+        outline: none;
+    }
+}
+
+.form-group {
+    margin-bottom: .5rem;
+}

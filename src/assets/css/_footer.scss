@@ -1,0 +1,65 @@
+.mainFooter {
+    background: url(../../../public/images/footer-bg.png) top center no-repeat #3f3f3f;
+    background-size: cover;
+    position: relative;
+    &::before{
+        content: "";
+        position: absolute;
+        bottom: calc(100% - 1px);
+        left: 0;
+        width: 100%;
+        height: 101px;
+        background: url(../../../public/images/footer-before.png) top center repeat-x; 
+    }
+}
+// footer{
+//     .footerTop{
+//         padding: 3rem 0;
+//         background: #f0f0f0;
+//     }
+//     .footerBox{
+//         img{
+//             max-width: 100%;
+//             display: block;
+//         }
+//         ul{
+//             li{
+//                 &:not(:last-child){
+//                     margin-right: 1rem;
+//                 }
+//                 &.faIcon{
+//                     a{
+//                         display: block;
+//                         color: $bg-1;
+//                         font-size: 40px;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     .fBox{
+//         ul{
+//             li{
+//                 font-family: 'Ofelia Std Book';
+//                 &:not(:last-child){
+//                     margin-bottom: 8px;
+//                 }
+//                 a{
+//                     color: #040200;
+//                 }
+//             }
+//         }
+//         .fBoxInner{
+//             &:not(:last-child){
+//                 margin-bottom: 20px;
+//             }
+//         }
+//     }
+//     .footerBtm{
+//         background: $bg-1;
+//         color: $bg-6;
+//         padding: .8rem 0;
+//         font-family: 'Ofelia Std Book';
+//         font-size: 12px;
+//     }
+// }

@@ -1,0 +1,47 @@
+
+header {
+  width: 100%;
+  z-index: 3;
+  transition: all .4s ease-in-out;
+  background-color: transparent;
+  // top:-200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 15px 0;
+  Grid{
+    background-color: transparent;
+  }
+  
+  // &.sticky{
+    
+  // }
+  .navigation{
+    ul{
+      li{
+        a{
+          display: block;
+          padding: 10px 20px;
+          color: #a3a1a1;
+          i{
+            margin-left: 5px;
+          }
+          &:hover{
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  .phoneUser {
+    ul{
+      li{
+        margin-left: 30px;
+        a{
+          color: $bg-white;
+        }
+      }
+    }
+  }
+}
+

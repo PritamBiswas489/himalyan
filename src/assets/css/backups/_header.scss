@@ -1,0 +1,167 @@
+header {
+  width: 100%;
+  z-index: 3;
+  transition: all .4s ease-in-out;
+  background: #fff;
+  top:-200px;
+  .topHeader{
+    padding: .8rem 0;
+    .logo {
+      width: 180px;
+      a{
+        display: block;
+        img{
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+    .topLinks{
+      padding: 0 1.2rem;
+      ul{
+        li{
+          a{
+            color: $bg-12;
+            font-size: 14px;
+            display: block;
+            line-height: 44px;
+            padding: 0 15px;
+            position: relative;
+            &:after{
+              content: '';
+              position: absolute;
+              left: 10px;
+              bottom: 0;
+              background: $bg-1;
+              transform: scale(0, 1);
+              transform-origin: right;
+              transition: transform .4s ease;
+              height: 2px;
+              width: calc(100% - 20px);
+            }
+            &.active , &:hover{
+              &:after{
+                transform: scale(1, 1);
+                transform-origin: left;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .btmHeader {
+    background: $bg-1;
+    ul{
+      li{
+        a {
+          color: $bg-white;
+          font-size: 14px;
+          line-height: 52px;
+          font-family: 'Ofelia Std';
+          font-weight: 500;
+        }
+      }
+    }
+  }
+  &.sticky{
+    .topHeader{
+      padding: .3rem 0;
+    }
+    .btmHeader ul li a {
+      line-height: 46px;
+    }
+  }
+  
+}
+
+
+
+.mainHeader {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.innerHeader {
+    position: static;
+    top: -100px;
+}
+
+header.sticky,
+.innerHeader.sticky {
+    top: 0;
+    position: fixed;
+    z-index: 9;
+    background: #fff;
+}
+
+.signUpLang{
+  ul{
+      li{
+          &:not(:last-child){
+              margin-right: 1rem;
+          }
+          .hSrcBtn {
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+          }
+          a{
+              font-size: 14px;
+              font-weight: 600;
+              display: block;
+              border-radius: 30px;
+              &.logInBtn{
+                  background: $bg-1;
+                  border: none;
+                  color: #fff;
+                  line-height: 40px;
+                  padding: 0 25px;
+                  .svg-inline--fa{
+                    margin-right: 5px;
+                    font-size: 18px;
+                  }
+                  &:hover{
+                    background: $bg-3;
+                  }
+              }
+              &.signUpBtn{
+                  background: transparent;
+                  color: #333;
+                  border: $bg-1 1px solid;
+                  line-height: 38px;
+                  padding: 0 25px;
+                  .svg-inline--fa{
+                    margin-right: 5px;
+                    font-size: 18px;
+                  }
+                  &:hover{
+                    background: $bg-1;
+                    color: $bg-6;
+                  }
+              }
+          }
+          
+        &.cartIcon{
+          position: relative;
+          a{
+            span{
+              position: absolute;
+              background: $bg-1;
+              color: $bg-white;
+              font-size: 10px;
+              height: 22px;
+              width: 22px;
+              line-height: 22px;
+              text-align: center;
+              border-radius: 50%;
+              left: 0;
+              bottom: -3px;
+            }
+          }
+        }  
+      }
+  }
+}

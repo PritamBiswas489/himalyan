@@ -1,0 +1,50 @@
+footer{
+    .footerTop{
+        padding: 3rem 0;
+    }
+    .footerBox{
+        img{
+            max-width: 100%;
+            display: block;
+        }
+        ul{
+            li{
+                &:not(:last-child){
+                    margin-right: 1rem;
+                }
+                &.faIcon{
+                    a{
+                        display: block;
+                        color: $bg-1;
+                        font-size: 40px;
+                    }
+                }
+            }
+        }
+    }
+    .fBox{
+        ul{
+            li{
+                font-family: 'Ofelia Std Book';
+                &:not(:last-child){
+                    margin-bottom: 8px;
+                }
+                a{
+                    color: #040200;
+                }
+            }
+        }
+        .fBoxInner{
+            &:not(:last-child){
+                margin-bottom: 20px;
+            }
+        }
+    }
+    .footerBtm{
+        background: $bg-1;
+        color: $bg-6;
+        padding: .8rem 0;
+        font-family: 'Ofelia Std Book';
+        font-size: 12px;
+    }
+}

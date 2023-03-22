@@ -1,0 +1,91 @@
+
+.homeBanner{
+  // margin: 100px;
+  height: 100vh;
+  background-size: cover !important;
+  position: relative;
+  &::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    // background: #f00;
+    background: url(../../../public/images/banner-background.png) bottom center no-repeat;
+    background-size: cover;
+    z-index: 1;
+  }
+  &::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+  }
+  
+}
+
+.banSlogan {
+  width: 100%;
+  max-width: 1170px;
+  position: absolute;
+  bottom: 13%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  
+  h1{
+    font-family: 'Fair Prosper';
+    color: $bg-1;
+    text-align: center;
+    font-size: 8vw;
+  }
+}
+
+.banSrc {
+  box-shadow: 6px 3.605px 15.04px 0.96px rgba(94, 94, 94, 0.32);
+  max-width: 810px;
+  width: 100%;
+  margin: 10vh auto 0;
+  border-radius: 50px;
+  background: $bg-white;
+  .banSrcInput{
+    // height: 76px;
+    border-radius: 50px;
+    width: 100%;
+    padding: 0 30px;
+    border: none;
+    &.MuiFormControl-root {
+      padding: 0;
+    }
+  }
+  .MuiOutlinedInput-notchedOutline{
+    border: none;
+  }
+  .css-1qqsdnr-MuiAutocomplete-root {
+    .MuiOutlinedInput-root {
+      padding: 19px 30px;
+    }
+  }
+  // .banSrcBtn{
+  //   position: absolute;
+  //   right: 10px;
+  //   top: 50%;
+  //   transform: translateY(-50%);
+  //   width: 58px;
+  //   height: 58px;
+  //   line-height: 58px;
+  //   text-align: center;
+  //   background: $bg-1;
+  //   color: $bg-white;
+  //   border-radius: 50%;
+  //   border: none;
+  //   font-size: 25px;
+  // }
+}
+
+
+
