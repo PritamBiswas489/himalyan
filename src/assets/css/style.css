@@ -1146,18 +1146,18 @@ header .phoneUser ul li a {
   background: linear-gradient(to right, rgb(251, 93, 54) 46%, rgba(251, 93, 54, 0.64) 60%, rgba(94, 35, 20, 0) 85%, rgba(0, 0, 0, 0) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#fb5d36", endColorstr="#00000000",GradientType=1 );
 }
- 
+.dolerPp span {
+  text-decoration: line-through;
+}
 .dolerPp h6 {
   padding-bottom: 5px;
   color: #fff;
- 
   font-size: 14px;
   font-weight: 400;
   line-height: 1;
 }
 .dolerPp h6 span {
   font-weight: 600;
-  text-decoration: line-through;
 }
 .dolerPp h5 {
   padding-bottom: 0;
@@ -3323,6 +3323,11 @@ html {
 
 .ourWorkInner {
   padding: 40px 80px;
+}
+
+.revModal .css-1fu2e3p-MuiPaper-root-MuiDialog-paper {
+  max-width: 800px;
+  width: 100%;
 }
 
 @media only screen and (max-width: 1440px) {

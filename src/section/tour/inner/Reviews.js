@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 
+// import Rating from '@mui/material/Rating';
+// import Box from '@mui/material/Box';
+import StarIcon from '@mui/icons-material/Star';
+
 import {
   Box,
   Card,
@@ -49,6 +53,24 @@ const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: 'transparent',
 }));
 
+
+const labels = {
+  0.5: '0.5',
+  1: '1+',
+  1.5: '1.5',
+  2: '2+',
+  2.5: '2.5',
+  3: '3+',
+  3.5: '3.5',
+  4: '4+',
+  4.5: '4.5',
+  5: '5+',
+};
+
+function getLabelText(value) {
+  return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
+}
+
 const Reviews = () => {
   const ColorButton = styled(Button)(({ theme }) => ({
     color: theme.palette.getContrastText('#fb5d36'),
@@ -64,6 +86,9 @@ const Reviews = () => {
       backgroundColor: '#d04726',
     },
   }));
+
+  const [value, setValue] = React.useState(2);
+  const [hover, setHover] = React.useState(-1);
 
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
@@ -98,6 +123,9 @@ const Reviews = () => {
       await setReviewList(clientSays.data.data);
     }
   }
+
+
+
 
   return (
     <>
@@ -462,7 +490,7 @@ const Reviews = () => {
           </Box>
         </CardContent>
       </Card>
-      <Dialog
+      <Dialog className='revModal'
         fullScreen={fullScreen}
         maxWidth='lg'
         width='100%'
@@ -490,24 +518,34 @@ const Reviews = () => {
         </DialogActions>
         <DialogContent fullWidth>
           <Box sx={{ width: '100%' }}>
+            <Box
+              sx={{
+                marginBottom: '.5rem',
+              }}
+            >
+              <Typography
+                variant='h3'
+                style={{
+                  fontFamily: 'Montserrat',
+                  fontWeight: 700,
+                  fontSize: '22px',
+                  color: '#444',
+                }}
+              >
+                {/* <span style={{ fontWeight: '700', color: '#f97150' }}>Method 1 :</span>{' '} */}
+                Tour Name : Nepal Tour
+              </Typography>
+            </Box>
             <Grid container spacing={3} sx={{ width: '100%' }}>
               <Grid item xs={12} sm={12} md={6} lg={6}>
+
                 <Box
                   sx={{
-                    marginBottom: '1.5rem',
+                    width: '100%',
+                    marginBottom: '.8rem',
                   }}
                 >
-                  <Typography
-                    variant='h6'
-                    sx={{
-                      fontFamily: 'Montserrat',
-                      fontSize: '16px',
-                      color: '#000',
-                    }}
-                  >
-                    <span style={{ fontWeight: '700', color: '#f97150' }}>Method 1 :</span>{' '}
-                    Instantly dispatch review requests to customers
-                  </Typography>
+                  <TextField fullWidth label='Full Name :' id='fullWidth' />
                 </Box>
                 <Box
                   sx={{
@@ -515,15 +553,7 @@ const Reviews = () => {
                     marginBottom: '.8rem',
                   }}
                 >
-                  <TextField fullWidth label='Customer Name' id='fullWidth' />
-                </Box>
-                <Box
-                  sx={{
-                    width: '100%',
-                    marginBottom: '.8rem',
-                  }}
-                >
-                  <TextField fullWidth label='Customer Email' id='fullWidth' />
+                  <TextField fullWidth label='Email :' id='fullWidth' />
                 </Box>
 
                 <Box
@@ -547,8 +577,7 @@ const Reviews = () => {
                     </Select>
                   </FormControl>
                 </Box>
-
-                <Box
+                {/* <Box
                   sx={{
                     width: '100%',
                     marginBottom: '.8rem',
@@ -568,12 +597,37 @@ const Reviews = () => {
                       <MenuItem value={30}>Bhutan</MenuItem>
                     </Select>
                   </FormControl>
-                </Box>
-
+                </Box> */}
+              </Grid>
+              <Grid item xs={12} sm={12} md={6} lg={6}>
                 <Box
                   sx={{
                     width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
                     marginBottom: '.8rem',
+                  }}
+                >
+                  <Rating
+                    name="hover-feedback"
+                    value={value}
+                    precision={0.5}
+                    getLabelText={getLabelText}
+                    onChange={(event, newValue) => {
+                      setValue(newValue);
+                    }}
+                    onChangeActive={(event, newHover) => {
+                      setHover(newHover);
+                    }}
+                    emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                  />
+                  {value !== null && (
+                    <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+                  )}
+                </Box>
+                <Box
+                  sx={{
+                    width: '100%',
                   }}
                 >
                   <TextareaAutosize
@@ -581,7 +635,7 @@ const Reviews = () => {
                     placeholder='Empty'
                     style={{
                       width: '100%',
-                      height: '120px',
+                      height: '158px',
                       resize: 'none',
                       padding: '1rem',
                       fontFamily: 'Montserrat',
@@ -589,14 +643,8 @@ const Reviews = () => {
                   />
                 </Box>
 
-                <Box>
-                  <ColorButton variant='contained' className='LearnMoreBtn'>
-                    Send Review Email
-                  </ColorButton>
-                </Box>
-              </Grid>
-              <Grid item xs={12} sm={12} md={6} lg={6}>
-                <Box
+
+                {/* <Box
                   sx={{
                     marginBottom: '1.5rem',
                   }}
@@ -637,32 +685,14 @@ const Reviews = () => {
                     <Button variant='outlined'>Copy to Clopboard</Button> Copy the link and send it
                     to your customer via link
                   </Typography>
-                </Box>
+                </Box> */}
               </Grid>
               <Grid item xs={12}>
-                <Typography
-                  variant='h6'
-                  sx={{
-                    fontWeight: 600,
-                    fontFamily: 'Montserrat',
-                    borderTop: '#ddd 1px solid',
-                    paddingTop: '10px',
-                  }}
-                >
-                  Note
-                </Typography>
-                <Typography
-                  variant='body2'
-                  sx={{
-                    fontFamily: 'Montserrat',
-                  }}
-                >
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                  Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                  unknown printer took a galley of type and scrambled it to make a type specimen book.
-                  It has survived not only five centuries, but also the leap into electronic
-                  typesetting, remaining essentially unchanged.{' '}
-                </Typography>
+                <Box>
+                  <ColorButton variant='contained' className='LearnMoreBtn'>
+                    Send Review Email
+                  </ColorButton>
+                </Box>
               </Grid>
             </Grid>
           </Box>
