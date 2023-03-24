@@ -73,6 +73,8 @@ const ContactTwo = ({ content }) => {
                                         </Typography>
                                         <Typography variant='subtitle1' color='text.secondary' component='div'>
                                             {parse(content?.content?.section2_item2_content ?? '')}
+                                            <br/>
+                                            {parse(content?.content?.section2_item2_content32 ?? '')}
                                         </Typography>
                                     </CardContent>
                                 </Box>

@@ -8,12 +8,27 @@ import { FaFacebookSquare, FaTwitterSquare, FaInstagramSquare, FaLinkedin, FaYou
 import WhyBook from '../../section/tour/inner/WhyBook';
 import CustomerSupport from '../../section/tour/inner/CustomerSupport';
 import { teamDetailsService } from '../../service/team.service';
+import { contactContentService } from '../../service/Contact.service.js';
+import parse from 'html-react-parser';
 
 const TeamDetails = () => {
     const { slug } = useParams();
     const [teamDtl, setTeamDtl] = useState({});
     // const [tour, setTour] = useState();
     const [isHover, setIsHover] = useState(false);
+
+    const [content, setContent] = useState({});
+
+    useEffect(() => {
+        getContactContent();
+    }, []);
+
+    const getContactContent = async () => {
+        const result = await contactContentService();
+        if (result.status === 200) {
+            setContent(result.data.data);
+        }
+    };
 
     useEffect(() => {
         getTeamDetails();
@@ -143,7 +158,7 @@ const TeamDetails = () => {
                                             onMouseEnter={handleMouseEnter}
                                             onMouseLeave={handleMouseLeave}
                                         >
-                                            vinton.fenson@serenite.com
+                                            {parse(content?.content?.section2_item3_content ?? '')}
                                         </Link>
                                     </Typography>
                                 </Box>
@@ -168,7 +183,33 @@ const TeamDetails = () => {
                                             onMouseEnter={handleMouseEnter}
                                             onMouseLeave={handleMouseLeave}
                                         >
-                                            (+01) 123 456 7890
+                                            {parse(content?.content?.section2_item2_content ?? '')}
+                                             
+                                        </Link>
+                                    </Typography>
+                                </Box>
+                                <Box className='personDetailsInnerBox'>
+                                    <Typography
+                                        variant='subtitle1'
+                                        sx={{
+                                            color: '#f97150',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '1',
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: '600',
+                                        }}
+                                    >
+                                        Whatsapp
+                                    </Typography>
+                                    <Typography variant='h3_package'>
+                                        <Link
+                                            to={'/'}
+                                            style={hoverStyle}
+                                            onMouseEnter={handleMouseEnter}
+                                            onMouseLeave={handleMouseLeave}
+                                        >
+                                            
+                                            {parse(content?.content?.section2_item2_content32 ?? '')}
                                         </Link>
                                     </Typography>
                                 </Box>

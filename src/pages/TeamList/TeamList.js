@@ -50,7 +50,7 @@ const TeamList = () => {
     }));
     return (
         <>
-            <Box className='contentPageBann' style={{ background: 'url(../images/team-bg.jpg) top center no-repeat' }}></Box>
+            <Box className='contentPageBann' style={{ background: 'url('+process.env.REACT_APP_HOST_IMAGE+'image/team/'+content?.content?.image_header+') top center no-repeat' }}></Box>
             <Box sx={{ flexGrow: 1 }}>
                 <Container maxWidth='lg'>
                     <Grid container spacing={3} padding={3}>
@@ -438,7 +438,7 @@ const TeamList = () => {
                                     >
                                         {val.title}
                                     </Typography>
-                                    <Typography variant='h2_itBan'>{val?.sub_title}</Typography>
+                                    <Typography variant='h2_itBan'>{val.sub_titile}</Typography>
                                     <Typography
                                         variant='body1'
                                         dangerouslySetInnerHTML={{
@@ -567,36 +567,8 @@ const TeamList = () => {
                                     >
                                         {val.sub_title}
                                     </Typography>
-                                    {/* <Box className='itemSocial'>
-                                        <ul className='d-flex'>
-                                            <li>
-                                                <Link to={'/'}>
-                                                    <FaFacebookSquare />
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link to={'/'}>
-                                                    <FaTwitterSquare />
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link to={'/'}>
-                                                    <FaInstagramSquare />
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link to={'/'}>
-                                                    <FaLinkedin />
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link to={'/'}>
-                                                    <FaYoutube />
-                                                </Link>
-                                            </li>
-                                        </ul>
-                                    </Box> */}
-                                    <Link className='redMore' to={`/team-details/${val.slug}`}>
+                                    
+                                    <Link className='redMore' to={`/team/${val.slug}`}>
                                         Read More <BsArrowRightCircle />
                                     </Link>
                                 </Box>

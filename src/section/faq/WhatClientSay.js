@@ -117,9 +117,11 @@ const WhatClientSay = () => {
                           </Typography>
                         </item>
                       </List>
-                      <Typography variant="body2" color="text.secondary" sx={{ padding: 0, marginTop: 2 }}>
-                        {parse(element.review)}
-                      </Typography>
+                      <Box className='ovrScroll-2'>
+                        <Typography variant="body2" color="text.secondary" sx={{ padding: 0, marginTop: 2 }}>
+                          {parse(element.review)}
+                        </Typography>
+                      </Box>
 
                       <List component="div" sx={{ display: 'flex', justifyContent: "space-between", marginTop: "20px" }}>
                         <item>

@@ -8,32 +8,46 @@ import { Link } from 'react-router-dom';
 import { MdPlayArrow } from 'react-icons/md';
 import { SlCalender } from 'react-icons/sl';
 
-import { blogListService } from '../../service/Blog.service';
+import { blogListService,blogCategoryService } from '../../service/Blog.service';
 import moment from 'moment';
 
 const Blog = () => {
     const [blog, setBlog] = useState([]);
+    const [blogCategories, setBlogCategories] = useState([]);
+
     const [blogMeta, setBlogMeta] = useState({});
     const [page, setPage] = useState(1);
 
+    const [selectedCat, setSelectedCat] = React.useState(0);
+
+    const handleChange = (event) => { 
+        setSelectedCat(event.target.value);
+    };
+
+
     useEffect(() => {
         getBlog();
-    }, [page]);
+    }, [page,selectedCat]);
+    useEffect(() => {
+        getBlogCategory();
+    }, []);
 
     const getBlog = async () => {
-        const blog = await blogListService(page);
+        const blog = await blogListService(page,selectedCat);
         if (blog.status === 200) {
             setBlog(blog.data.data.records);
             setBlogMeta(blog.data.data.meta);
         }
     };
+    const getBlogCategory = async () => {
+        const blog = await blogCategoryService(page);
+        if (blog.status === 200) {
+            setBlogCategories(blog.data.data);
+            //console.log(blog.data.data);
+        }
+    }
 
-    const [age, setAge] = React.useState('');
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    };
-
+   
     return (
         <>
             <Box className='blogBanner' style={{ background: 'url(../images/blog.jpg) top center no-repeat' }}></Box>
@@ -45,16 +59,16 @@ const Blog = () => {
                         <Select
                             labelId="demo-select-small"
                             id="demo-select-small"
-                            value={age}
-                            label="Age"
+                            value={selectedCat}
+                            label="Category"
                             onChange={handleChange}
                         >
-                            <MenuItem value="">
+                            <MenuItem value="0">
                                 <em>None</em>
                             </MenuItem>
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+                            {blogCategories.map((cat)=><MenuItem value={cat['id']}>{cat['cat_name']}</MenuItem>)}
+                            
+                            
                         </Select>
                     </FormControl>
                 </div>

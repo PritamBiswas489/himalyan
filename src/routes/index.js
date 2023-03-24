@@ -52,7 +52,7 @@ export default function Router() {
                 { path: 'blog-details/:slug', element: <BlogDetails /> },
                 { path: 'support/:slug', element: <ContentPage /> },
                 { path: 'team-list', element: <TeamList /> },
-                { path: 'team-details/:slug', element: <TeamDetails /> },
+                { path: 'team/:slug', element: <TeamDetails /> },
                 { path: 'region/:slug', element: <RegionDetails /> },
                 { path: 'test', element: <Test /> },
             ],

@@ -25,6 +25,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 const DestinationDetails = () => {
+     
     const params = useParams();
     const [loading, setLoading] = useState(true);
     const [destination, setDestination] = useState('');

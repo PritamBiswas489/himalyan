@@ -104,6 +104,7 @@ const style = {
   p: 4,
 };
 const TopSeller = (props) => {
+   
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const [bookingDate, setBookingDate] = useState(null);
@@ -146,6 +147,9 @@ const TopSeller = (props) => {
       const disable_end = element.to;
       getDatesInRange(disable_start, disable_end);
     });
+    if(props.tour.cutt_off_days){
+       getDatesInRange(props.tour.cutt_off_days['from'], props.tour.cutt_off_days['to']);
+    }
     setDisDate(dates.filter((item, index) => dates.indexOf(item) === index));
 
     if (props.tour) {

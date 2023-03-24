@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
+ 
+
+ 
+
 import {
     Box,
     Typography,
@@ -75,7 +79,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const BlogDetails = () => {
     const { slug } = useParams();
     const [blogDtl, setBlogDtl] = useState({});
-
+    const [blogRecentPosts, setRecentPosts] = useState([]);
+    
     const ColorButton = styled(Button)(({ theme }) => ({
         color: theme.palette.getContrastText('#fb5d36'),
         backgroundColor: '#f97150',
@@ -99,6 +104,8 @@ const BlogDetails = () => {
         const blog = await blogDetailsService(slug);
         if (blog.status === 200) {
             setBlogDtl(blog.data.data);
+            setRecentPosts(blog.data.blog_recent);
+            //console.log(blog.data.blog_recent.data);
         }
     };
 
@@ -180,216 +187,14 @@ const BlogDetails = () => {
                                     className='parentContent'
                                     dangerouslySetInnerHTML={{ __html: blogDtl?.content }}
                                 ></div>
-                                {/* <Box
-                                    className='thumbnailContainer'
-                                    sx={{
-                                        margin: '1.25rem 0',
-                                    }}
-                                >
-                                    <img
-                                        src={`${process.env.REACT_APP_HOST_IMAGE}image/blog/${blogDtl.thumbnail_img}`}
-                                        alt=''
-                                    />
-                                </Box> */}
-                                {/* <div
-                                    className='parentContent'
-                                    dangerouslySetInnerHTML={{
-                                        __html: blogDtl.content?.substr(
-                                            trimmedStr(blogDtl?.content, 300).length,
-                                            blogDtl.content.length
-                                        ),
-                                    }}
-                                ></div> */}
-                                {/* <Typography
-                                    variant='h4'
-                                    sx={{
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: '700',
-                                        fontSize: '1.8rem',
-                                    }}
-                                >
-                                    What is Lorem Ipsum?
-                                </Typography>
-                                <Typography variant='body1'>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                    unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                    It has survived not only five centuries, but also the leap into electronic
-                                    typesetting, remaining essentially unchanged. It was popularised in the 1960s with
-                                    the release of Letraset sheets containing Lorem Ipsum passages, and more recently
-                                    with desktop publishing software like Aldus PageMaker including versions of Lorem
-                                    Ipsum.
-                                    <Box
-                                        className='thumbnailContainer'
-                                        sx={{
-                                            margin: '1.25rem 0',
-                                        }}
-                                    >
-                                        <img src={`../images/blog-list.jpg`} alt='' />
-                                    </Box>
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters, as opposed to using 'Content
-                                    here, content here', making it look like readable English. Many desktop publishing
-                                    packages and web page editors now use Lorem Ipsum as their default model text, and a
-                                    search for 'lorem ipsum' will uncover many web sites still in their infancy. Various
-                                    versions have evolved over the years, sometimes by accident, sometimes on purpose
-                                    (injected humour and the like).
-                                </Typography>
-                            </Box>
-                            <Box
-                                sx={{
-                                    padding: '1rem 0',
-                                }}
-                            >
-                                <Typography
-                                    variant='h4'
-                                    sx={{
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: '700',
-                                        fontSize: '1.8rem',
-                                    }}
-                                >
-                                    What is Lorem Ipsum?
-                                </Typography>
-                                <Typography variant='body1'>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                    unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                    It has survived not only five centuries, but also the leap into electronic
-                                    typesetting, remaining essentially unchanged. It was popularised in the 1960s with
-                                    the release of Letraset sheets containing Lorem Ipsum passages, and more recently
-                                    with desktop publishing software like Aldus PageMaker including versions of Lorem
-                                    Ipsum.
-                                    <br />
-                                    <br />
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters, as opposed to using 'Content
-                                    here, content here', making it look like readable English. Many desktop publishing
-                                    packages and web page editors now use Lorem Ipsum as their default model text, and a
-                                    search for 'lorem ipsum' will uncover many web sites still in their infancy. Various
-                                    versions have evolved over the years, sometimes by accident, sometimes on purpose
-                                    (injected humour and the like).
-                                </Typography>
-                            </Box>
-                            <Box
-                                sx={{
-                                    padding: '1rem 0',
-                                }}
-                            >
-                                <Typography
-                                    variant='h4'
-                                    sx={{
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: '700',
-                                        fontSize: '1.8rem',
-                                    }}
-                                >
-                                    What is Lorem Ipsum?
-                                </Typography>
-                                <Typography variant='body1'>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                                    unknown printer took a galley of type and scrambled it to make a type specimen book.
-                                    It has survived not only five centuries, but also the leap into electronic
-                                    typesetting, remaining essentially unchanged. It was popularised in the 1960s with
-                                    the release of Letraset sheets containing Lorem Ipsum passages, and more recently
-                                    with desktop publishing software like Aldus PageMaker including versions of Lorem
-                                    Ipsum.
-                                    <br />
-                                    <br />
-                                    It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters, as opposed to using 'Content
-                                    here, content here', making it look like readable English. Many desktop publishing
-                                    packages and web page editors now use Lorem Ipsum as their default model text, and a
-                                    search for 'lorem ipsum' will uncover many web sites still in their infancy. Various
-                                    versions have evolved over the years, sometimes by accident, sometimes on purpose
-                                    (injected humour and the like).
-                                </Typography> */}
+                                 
+                               
+                                
                             </Box>
                         </Box>
                     </Grid>
                     <Grid sx={12} sm={12} md={3} lg={3}>
-                        {/* <Box
-                            sx={{
-                                background: '#fff',
-                                marginBottom: '1rem',
-                                boxShadow: '0px 0px 68px 0px rgba(0, 0, 0, 0.08)',
-                            }}
-                        >
-                            <Typography
-                                variant='h5'
-                                sx={{
-                                    padding: '1rem 1rem',
-                                    borderBottom: '#ccc 1px solid',
-                                }}
-                            >
-                                Search
-                            </Typography>
-                            <Box
-                                style={{
-                                    padding: '.5rem 0',
-                                }}
-                            >
-                                <Search>
-                                    <SearchIconWrapper>
-                                        <SearchIcon />
-                                    </SearchIconWrapper>
-                                    <StyledInputBase placeholder='Search…' inputProps={{ 'aria-label': 'search' }} />
-                                </Search>
-                            </Box>
-                        </Box>
-                        <Box
-                            sx={{
-                                background: '#fff',
-                                boxShadow: '0px 0px 68px 0px rgba(0, 0, 0, 0.08)',
-                                marginBottom: '1rem',
-                            }}
-                        >
-                            <Typography
-                                variant='h5'
-                                sx={{
-                                    padding: '1rem 1rem',
-                                    borderBottom: '#ccc 1px solid',
-                                }}
-                            >
-                                Categorries
-                            </Typography>
-                            <Box
-                                style={{
-                                    padding: '.5rem 1rem',
-                                }}
-                            >
-                                <ul>
-                                    <li>
-                                        <FormControlLabel control={<Checkbox />} label='Life Style' />
-                                    </li>
-                                    <li>
-                                        <FormControlLabel control={<Checkbox />} label='Travels' />
-                                    </li>
-                                    <li>
-                                        <FormControlLabel control={<Checkbox />} label='Life Style' />
-                                    </li>
-                                    <li>
-                                        <FormControlLabel control={<Checkbox />} label='Travels' />
-                                    </li>
-                                    <li>
-                                        <FormControlLabel control={<Checkbox />} label='Life Style' />
-                                    </li>
-                                    <li>
-                                        <FormControlLabel control={<Checkbox />} label='Travels' />
-                                    </li>
-                                    <li>
-                                        <FormControlLabel control={<Checkbox />} label='Life Style' />
-                                    </li>
-                                    <li>
-                                        <FormControlLabel control={<Checkbox />} label='Travels' />
-                                    </li>
-                                </ul>
-                            </Box>
-                        </Box> */}
+                       
 
                         <Box
                             sx={{
@@ -408,60 +213,11 @@ const BlogDetails = () => {
                                 Recent Post
                             </Typography>
                             <Box>
-                                <Link
-                                    to={'/'}
-                                    className='recentPost'
-                                    style={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        fontFamily: 'Montserrat',
-                                    }}
-                                >
-                                    <Box
-                                        sx={{
-                                            flex: '0 0 80px',
-                                            maxWidth: '80px',
-                                        }}
-                                    >
-                                        <span>
-                                            <img src={`../images/blog-list.jpg`} alt='' />
-                                        </span>
-                                    </Box>
-                                    <Box
-                                        sx={{
-                                            flex: '0 0 calc(100% - 80px)',
-                                            paddingLeft: '.8rem',
-                                        }}
-                                    >
-                                        <Typography
-                                            variant='caption'
-                                            style={{
-                                                color: '#666',
-                                            }}
-                                        >
-                                            <BsCalendar2Minus
-                                                style={{
-                                                    marginRight: '5px',
-                                                    color: '#f97150',
-                                                }}
-                                            />
-                                            22 Feb
-                                        </Typography>
-                                        <Typography
-                                            variant='h6'
-                                            sx={{
-                                                fontSize: '14px',
-                                                fontWeight: '600',
-                                                fontFamily: 'Montserrat',
-                                            }}
-                                        >
-                                            Lorem Ipsum is simply dummy text of the printing
-                                        </Typography>
-                                    </Box>
-                                </Link>
 
-                                <Link
-                                    to={'/'}
+                            {blogRecentPosts.map((dldet)=><Link
+                                    key={dldet.slug}
+                                    to={`/blog-details/${dldet.slug}`}
+                                    target="_blank"
                                     className='recentPost'
                                     style={{
                                         display: 'flex',
@@ -476,7 +232,7 @@ const BlogDetails = () => {
                                         }}
                                     >
                                         <span>
-                                            <img src={`../images/blog-list.jpg`} alt='' />
+                                            <img src={`${process.env.REACT_APP_HOST_IMAGE}image/blog/${dldet.thumbnail_img}`} alt='' />
                                         </span>
                                     </Box>
                                     <Box
@@ -497,7 +253,7 @@ const BlogDetails = () => {
                                                     color: '#f97150',
                                                 }}
                                             />
-                                            22 Feb
+                                            {moment(dldet.created_at).format('LL')}
                                         </Typography>
                                         <Typography
                                             variant='h6'
@@ -507,218 +263,16 @@ const BlogDetails = () => {
                                                 fontFamily: 'Montserrat',
                                             }}
                                         >
-                                            Lorem Ipsum is simply dummy text of the printing
+                                            {dldet.title}
                                         </Typography>
                                     </Box>
                                 </Link>
+                                )}
 
-                                <Link
-                                    to={'/'}
-                                    className='recentPost'
-                                    style={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        fontFamily: 'Montserrat',
-                                    }}
-                                >
-                                    <Box
-                                        sx={{
-                                            flex: '0 0 80px',
-                                            maxWidth: '80px',
-                                        }}
-                                    >
-                                        <span>
-                                            <img src={`../images/blog-list.jpg`} alt='' />
-                                        </span>
-                                    </Box>
-                                    <Box
-                                        sx={{
-                                            flex: '0 0 calc(100% - 80px)',
-                                            paddingLeft: '.8rem',
-                                        }}
-                                    >
-                                        <Typography
-                                            variant='caption'
-                                            style={{
-                                                color: '#666',
-                                            }}
-                                        >
-                                            <BsCalendar2Minus
-                                                style={{
-                                                    marginRight: '5px',
-                                                    color: '#f97150',
-                                                }}
-                                            />
-                                            22 Feb
-                                        </Typography>
-                                        <Typography
-                                            variant='h6'
-                                            sx={{
-                                                fontSize: '14px',
-                                                fontWeight: '600',
-                                                fontFamily: 'Montserrat',
-                                            }}
-                                        >
-                                            Lorem Ipsum is simply dummy text of the printing
-                                        </Typography>
-                                    </Box>
-                                </Link>
 
-                                <Link
-                                    to={'/'}
-                                    className='recentPost'
-                                    style={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        fontFamily: 'Montserrat',
-                                    }}
-                                >
-                                    <Box
-                                        sx={{
-                                            flex: '0 0 80px',
-                                            maxWidth: '80px',
-                                        }}
-                                    >
-                                        <span>
-                                            <img src={`../images/blog-list.jpg`} alt='' />
-                                        </span>
-                                    </Box>
-                                    <Box
-                                        sx={{
-                                            flex: '0 0 calc(100% - 80px)',
-                                            paddingLeft: '.8rem',
-                                        }}
-                                    >
-                                        <Typography
-                                            variant='caption'
-                                            style={{
-                                                color: '#666',
-                                            }}
-                                        >
-                                            <BsCalendar2Minus
-                                                style={{
-                                                    marginRight: '5px',
-                                                    color: '#f97150',
-                                                }}
-                                            />
-                                            22 Feb
-                                        </Typography>
-                                        <Typography
-                                            variant='h6'
-                                            sx={{
-                                                fontSize: '14px',
-                                                fontWeight: '600',
-                                                fontFamily: 'Montserrat',
-                                            }}
-                                        >
-                                            Lorem Ipsum is simply dummy text of the printing
-                                        </Typography>
-                                    </Box>
-                                </Link>
+                            
 
-                                <Link
-                                    to={'/'}
-                                    className='recentPost'
-                                    style={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        fontFamily: 'Montserrat',
-                                    }}
-                                >
-                                    <Box
-                                        sx={{
-                                            flex: '0 0 80px',
-                                            maxWidth: '80px',
-                                        }}
-                                    >
-                                        <span>
-                                            <img src={`../images/blog-list.jpg`} alt='' />
-                                        </span>
-                                    </Box>
-                                    <Box
-                                        sx={{
-                                            flex: '0 0 calc(100% - 80px)',
-                                            paddingLeft: '.8rem',
-                                        }}
-                                    >
-                                        <Typography
-                                            variant='caption'
-                                            style={{
-                                                color: '#666',
-                                            }}
-                                        >
-                                            <BsCalendar2Minus
-                                                style={{
-                                                    marginRight: '5px',
-                                                    color: '#f97150',
-                                                }}
-                                            />
-                                            22 Feb
-                                        </Typography>
-                                        <Typography
-                                            variant='h6'
-                                            sx={{
-                                                fontSize: '14px',
-                                                fontWeight: '600',
-                                                fontFamily: 'Montserrat',
-                                            }}
-                                        >
-                                            Lorem Ipsum is simply dummy text of the printing
-                                        </Typography>
-                                    </Box>
-                                </Link>
-
-                                <Link
-                                    to={'/'}
-                                    className='recentPost'
-                                    style={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        fontFamily: 'Montserrat',
-                                    }}
-                                >
-                                    <Box
-                                        sx={{
-                                            flex: '0 0 80px',
-                                            maxWidth: '80px',
-                                        }}
-                                    >
-                                        <span>
-                                            <img src={`../images/blog-list.jpg`} alt='' />
-                                        </span>
-                                    </Box>
-                                    <Box
-                                        sx={{
-                                            flex: '0 0 calc(100% - 80px)',
-                                            paddingLeft: '.8rem',
-                                        }}
-                                    >
-                                        <Typography
-                                            variant='caption'
-                                            style={{
-                                                color: '#666',
-                                            }}
-                                        >
-                                            <BsCalendar2Minus
-                                                style={{
-                                                    marginRight: '5px',
-                                                    color: '#f97150',
-                                                }}
-                                            />
-                                            22 Feb
-                                        </Typography>
-                                        <Typography
-                                            variant='h6'
-                                            sx={{
-                                                fontSize: '14px',
-                                                fontWeight: '600',
-                                                fontFamily: 'Montserrat',
-                                            }}
-                                        >
-                                            Lorem Ipsum is simply dummy text of the printing
-                                        </Typography>
-                                    </Box>
-                                </Link>
+                                
                             </Box>
                         </Box>
                         <WhyBook />
