@@ -15,13 +15,4 @@ reviewApi.list = async (slug) => {
   }
 }
 
-// reviewApi.popularTourList = async (slug) => {
-//   try {
-//     const res = await API.get(`popular-tour`);
-//     return res;
-//   } catch (error) {
-//     return error.response;
-//   }
-// }
-
 export { reviewApi }

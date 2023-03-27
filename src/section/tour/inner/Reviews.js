@@ -36,6 +36,8 @@ import Masonry from '@mui/lab/Masonry';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { Stack } from '@mui/system';
 import { reviewApi } from '../../../service/Review.service';
+import { countryApi } from '../../../service/Country.service';
+import { tourApi } from '../../../service/Tour.service';
 import { fDateDMMMY } from '../../../utils/formatTime';
 import parse from 'html-react-parser';
 
@@ -94,9 +96,13 @@ const Reviews = () => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('lg'));
   const [reviewList, setReviewList] = React.useState([]);
+  const [countries, setCountries] = React.useState([]);
+  const [tours, setTours] = React.useState([]);
 
   React.useEffect(() => {
     getClientSay();
+    getCountries();
+    getTourList();
   }, []);
   const handleClickOpen = () => {
     setOpen(true);
@@ -107,20 +113,34 @@ const Reviews = () => {
   };
 
   const [selectCountry, setSelectCountry] = React.useState('');
-  const [productName, setproductName] = React.useState('');
+  const [selectTour, setSelectTour] = React.useState('');
 
-  const handleChange = (event) => {
+  const handleCountryChange = (event) => {
     setSelectCountry(event.target.value);
   };
+  const handleTourChange = (event) =>{
+    alert(event.target.value);
+    setSelectTour(event.target.value);
+  }
 
-  const handleChangep = (event) => {
-    setproductName(event.target.value);
-  };
-
+  
   const getClientSay = async () => {
     const clientSays = await reviewApi.list();
     if (clientSays.status === 200 && clientSays.data.status === 200 && clientSays.data.success === true) {
       await setReviewList(clientSays.data.data);
+    }
+  }
+  const getCountries = async () => {
+    const countiesList = await countryApi.getCountries();
+    if (countiesList.status === 200  ) {
+      await setCountries(countiesList.data.data);
+    }
+  }
+  const getTourList = async () => {
+    const tourList = await tourApi.tourList();
+    if (tourList.status === 200  ) {
+      
+      await setTours(tourList.data.data);
     }
   }
 
@@ -226,266 +246,7 @@ const Reviews = () => {
                 </Item>
               ))}
 
-              {/* <Item key={2}>
-                            <Card sx={{ padding: "15px", borderRadius: "20px;" }} className='clientSayBox'>
-                              <List component="div" sx={{ display: 'flex', alignItems: "left" }} >
-                                <item>
-                                  <Badge
-                                    overlap="circular"
-                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                                    badgeContent={ <SmallAvatar alt="Remy Sharp" src="../images/avatar/1.jpg" /> }
-                                  >
-                                    <Avatar alt="Travis Howard" src="../images/avatar/1.jpg" sx={{ width: 50, height: 50 }} />
-                                  </Badge>
-                                </item>
-                                <item className="pl-15">
-                                  <Typography variant="h6_review"
-                                    sx={{
-                                      padding: "0",
-                                      fontFamily: "Inter",
-                                      color: "#003663",
-                                      fontWeight: "700"
-                                    }}
-                                  >
-                                    Marlini Aragona
-                                  </Typography>
-                                  <Typography variant="caption" display="block"
-                                    sx={{
-                                      padding: "0",
-                                      fontFamily: "Inter",
-                                      fontSize: "13px",
-                                      color: "#acacac",
-                                      fontWeight: "600",
-                                      textAlign: 'left',
-                                    }}
-                                  >
-                                    Designation
-                                  </Typography>
-                                </item>
-                              </List>
-                              <Typography variant="body2" color="text.secondary" sx={{ padding: 0, margin: '0 0 50px', textAlign: 'left' }}>
-                                Lorem ipsum dolor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
-                              </Typography>
-                              <List component="div" sx={{ display: 'flex', justifyContent: "space-between", marginTop: "20px" }} >
-                                <item >
-                                  <Stack >
-                                    <Rating name="size-small" defaultValue={2} size="small" />
-                                  </Stack>
-                                </item>
-                                <item >
-                                  26th Oct, 2022
-                                </item>
-                              </List>
-                            </Card>
-                          </Item> */}
-              {/* <Item key={3}>
-                            <Card sx={{ padding: "15px", borderRadius: "20px;" }} className='clientSayBox'>
-                              <List component="div" sx={{ display: 'flex', alignItems: "left" }} >
-                                <item>
-                                  <Badge
-                                    overlap="circular"
-                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                                    badgeContent={ <SmallAvatar alt="Remy Sharp" src="../images/avatar/1.jpg" /> }
-                                  >
-                                    <Avatar alt="Travis Howard" src="../images/avatar/1.jpg" sx={{ width: 50, height: 50 }} />
-                                  </Badge>
-                                </item>
-                                <item className="pl-15">
-                                  <Typography variant="h6_review"
-                                    sx={{
-                                      padding: "0",
-                                      fontFamily: "Inter",
-                                      color: "#003663",
-                                      fontWeight: "700"
-                                    }}
-                                  >
-                                    Marlini Aragona
-                                  </Typography>
-                                  <Typography variant="caption" display="block"
-                                    sx={{
-                                      padding: "0",
-                                      fontFamily: "Inter",
-                                      fontSize: "13px",
-                                      color: "#acacac",
-                                      fontWeight: "600",
-                                      textAlign: 'left',
-                                    }}
-                                  >
-                                    Designation
-                                  </Typography>
-                                </item>
-                              </List>
-                              <Typography variant="body2" color="text.secondary" sx={{ padding: 0, margin: '0 0 50px', textAlign: 'left' }}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, vel facilisis.
-                              </Typography>
-                              <List component="div" sx={{ display: 'flex', justifyContent: "space-between", marginTop: "20px" }} >
-                                <item >
-                                  <Stack >
-                                    <Rating name="size-small" defaultValue={2} size="small" />
-                                  </Stack>
-                                </item>
-                                <item >
-                                  26th Oct, 2022
-                                </item>
-                              </List>
-                            </Card>
-                          </Item> */}
-              {/* <Item key={4}>
-                            <Card sx={{ padding: "15px", borderRadius: "20px;" }} className='clientSayBox'>
-                              <List component="div" sx={{ display: 'flex', alignItems: "left" }} >
-                                <item>
-                                  <Badge
-                                    overlap="circular"
-                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                                    badgeContent={ <SmallAvatar alt="Remy Sharp" src="../images/avatar/1.jpg" /> }
-                                  >
-                                    <Avatar alt="Travis Howard" src="../images/avatar/1.jpg" sx={{ width: 50, height: 50 }} />
-                                  </Badge>
-                                </item>
-                                <item className="pl-15">
-                                  <Typography variant="h6_review"
-                                    sx={{
-                                      padding: "0",
-                                      fontFamily: "Inter",
-                                      color: "#003663",
-                                      fontWeight: "700"
-                                    }}
-                                  >
-                                    Marlini Aragona
-                                  </Typography>
-                                  <Typography variant="caption" display="block"
-                                    sx={{
-                                      padding: "0",
-                                      fontFamily: "Inter",
-                                      fontSize: "13px",
-                                      color: "#acacac",
-                                      fontWeight: "600",
-                                      textAlign: 'left',
-                                    }}
-                                  >
-                                    Designation
-                                  </Typography>
-                                </item>
-                              </List>
-                              <Typography variant="body2" color="text.secondary" sx={{ padding: 0, margin: '0 0 50px', textAlign: 'left' }}>
-                                Lorem ipsum dolor sit amet, consectetur incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
-                              </Typography>
-                              <List component="div" sx={{ display: 'flex', justifyContent: "space-between", marginTop: "20px" }} >
-                                <item >
-                                  <Stack >
-                                    <Rating name="size-small" defaultValue={2} size="small" />
-                                  </Stack>
-                                </item>
-                                <item >
-                                  26th Oct, 2022
-                                </item>
-                              </List>
-                            </Card>
-                          </Item> */}
-              {/* <Item key={5}>
-                            <Card sx={{ padding: "15px", borderRadius: "20px;" }} className='clientSayBox'>
-                              <List component="div" sx={{ display: 'flex', alignItems: "left" }} >
-                                <item>
-                                  <Badge
-                                    overlap="circular"
-                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                                    badgeContent={ <SmallAvatar alt="Remy Sharp" src="../images/avatar/1.jpg" /> }
-                                  >
-                                    <Avatar alt="Travis Howard" src="../images/avatar/1.jpg" sx={{ width: 50, height: 50 }} />
-                                  </Badge>
-                                </item>
-                                <item className="pl-15">
-                                  <Typography variant="h6_review"
-                                    sx={{
-                                      padding: "0",
-                                      fontFamily: "Inter",
-                                      color: "#003663",
-                                      fontWeight: "700"
-                                    }}
-                                  >
-                                    Marlini Aragona
-                                  </Typography>
-                                  <Typography variant="caption" display="block"
-                                    sx={{
-                                      padding: "0",
-                                      fontFamily: "Inter",
-                                      fontSize: "13px",
-                                      color: "#acacac",
-                                      fontWeight: "600",
-                                      textAlign: 'left',
-                                    }}
-                                  >
-                                    Designation
-                                  </Typography>
-                                </item>
-                              </List>
-                              <Typography variant="body2" color="text.secondary" sx={{ padding: 0, margin: '0 0 50px', textAlign: 'left' }}>
-                                Lorem ipsum dolor sit amet, labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
-                              </Typography>
-                              <List component="div" sx={{ display: 'flex', justifyContent: "space-between", marginTop: "20px" }} >
-                                <item >
-                                  <Stack >
-                                    <Rating name="size-small" defaultValue={2} size="small" />
-                                  </Stack>
-                                </item>
-                                <item >
-                                  26th Oct, 2022
-                                </item>
-                              </List>
-                            </Card>
-                          </Item> */}
-              {/* <Item key={6}>
-                            <Card sx={{ padding: "15px", borderRadius: "20px;" }} className='clientSayBox'>
-                              <List component="div" sx={{ display: 'flex', alignItems: "left" }} >
-                                <item>
-                                  <Badge
-                                    overlap="circular"
-                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                                    badgeContent={ <SmallAvatar alt="Remy Sharp" src="../images/avatar/1.jpg" /> }
-                                  >
-                                    <Avatar alt="Travis Howard" src="../images/avatar/1.jpg" sx={{ width: 50, height: 50 }} />
-                                  </Badge>
-                                </item>
-                                <item className="pl-15">
-                                  <Typography variant="h6_review"
-                                    sx={{
-                                      padding: "0",
-                                      fontFamily: "Inter",
-                                      color: "#003663",
-                                      fontWeight: "700"
-                                    }}
-                                  >
-                                    Marlini Aragona
-                                  </Typography>
-                                  <Typography variant="caption" display="block"
-                                    sx={{
-                                      padding: "0",
-                                      fontFamily: "Inter",
-                                      fontSize: "13px",
-                                      color: "#acacac",
-                                      fontWeight: "600",
-                                      textAlign: 'left',
-                                    }}
-                                  >
-                                    Designation
-                                  </Typography>
-                                </item>
-                              </List>
-                              <Typography variant="body2" color="text.secondary" sx={{ padding: 0, margin: '0 0 50px', textAlign: 'left' }}>
-                                tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
-                              </Typography>
-                              <List component="div" sx={{ display: 'flex', justifyContent: "space-between", marginTop: "20px" }} >
-                                <item >
-                                  <Stack >
-                                    <Rating name="size-small" defaultValue={2} size="small" />
-                                  </Stack>
-                                </item>
-                                <item >
-                                  26th Oct, 2022
-                                </item>
-                              </List>
-                            </Card>
-                          </Item> */}
+          
             </Masonry>
           </Box>
         </CardContent>
@@ -532,25 +293,14 @@ const Reviews = () => {
                   color: '#444',
                 }}
               >
-                {/* <span style={{ fontWeight: '700', color: '#f97150' }}>Method 1 :</span>{' '} */}
-                Tour Name : Nepal Tour
+                
+                Review
               </Typography>
             </Box>
             <Grid container spacing={3} sx={{ width: '100%' }}>
               <Grid item xs={12} sm={12} md={6} lg={6}>
 
-                {/* <Box>
-                  <Button
-                    variant="contained"
-                    component="label"
-                  >
-                    Upload File
-                    <input
-                      type="file"
-                      hidden
-                    />
-                  </Button>
-                </Box> */}
+               
 
                 <Box
                   sx={{
@@ -582,35 +332,36 @@ const Reviews = () => {
                       id='demo-select-country'
                       value={selectCountry}
                       label='Select Country'
-                      onChange={handleChange}
+                      onChange={handleCountryChange}
                     >
-                      <MenuItem value={10}>India</MenuItem>
-                      <MenuItem value={20}>Napal</MenuItem>
-                      <MenuItem value={30}>Bhutan</MenuItem>
+                      {countries.map((country)=><MenuItem value={country.name}>{country.name}</MenuItem>)}
                     </Select>
                   </FormControl>
                 </Box>
-                {/* <Box
+                
+
+                <Box
                   sx={{
                     width: '100%',
                     marginBottom: '.8rem',
                   }}
                 >
                   <FormControl fullWidth>
-                    <InputLabel id='product-name'>Product Name</InputLabel>
+                    <InputLabel id='select-country'>Select tour</InputLabel>
                     <Select
-                      labelId='product-name'
-                      id='demo-product-name'
-                      value={productName}
-                      label='Product Name'
-                      onChange={handleChangep}
+                      labelId='select-tour'
+                      id='demo-select-tour'
+                      value={selectTour}
+                      label='Select Tour'
+                      onChange={handleTourChange}
                     >
-                      <MenuItem value={10}>India</MenuItem>
-                      <MenuItem value={20}>Napal</MenuItem>
-                      <MenuItem value={30}>Bhutan</MenuItem>
+                     {tours.map((tour)=><MenuItem value={tour.title}>{tour.title}</MenuItem>)}
                     </Select>
                   </FormControl>
-                </Box> */}
+                </Box>
+
+
+
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <Box
@@ -645,7 +396,7 @@ const Reviews = () => {
                 >
                   <TextareaAutosize
                     aria-label='empty textarea'
-                    placeholder='Empty'
+                    placeholder='Review text'
                     style={{
                       width: '100%',
                       height: '158px',
@@ -657,48 +408,7 @@ const Reviews = () => {
                 </Box>
 
 
-                {/* <Box
-                  sx={{
-                    marginBottom: '1.5rem',
-                  }}
-                >
-                  <Typography
-                    variant='h6'
-                    sx={{
-                      fontFamily: 'Montserrat',
-                      fontSize: '16px',
-                      color: '#000',
-                    }}
-                  >
-                    <span style={{ fontWeight: '700', color: '#f97150' }}>Method 2 :</span> Ask
-                    Customers for review yourself via the following link
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    marginBottom: '1.5rem',
-                  }}
-                >
-                  <TextField
-                    fullWidth
-                    id='standard-read-only-input'
-                    label='Copy Link'
-                    defaultValue='http://localhost:3000/nepal/test-tour-1'
-                    InputProps={{
-                      readOnly: true,
-                    }}
-                  />
-                </Box>
-                <Box
-                  sx={{
-                    marginBottom: '1.5rem',
-                  }}
-                >
-                  <Typography variant='subtitle2'>
-                    <Button variant='outlined'>Copy to Clopboard</Button> Copy the link and send it
-                    to your customer via link
-                  </Typography>
-                </Box> */}
+               
               </Grid>
               <Grid item xs={12}>
                 <Box>

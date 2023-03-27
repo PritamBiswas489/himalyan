@@ -5,6 +5,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { theme } from './theme/theme';
 import { SnackbarProvider } from "notistack";
 import Router from './routes';
+import { Helmet } from 'react-helmet';
 // @mui
 // import { alpha, useTheme } from '@mui/material/styles';
 // import { Box, GlobalStyles, Collapse } from '@mui/material';
@@ -15,7 +16,12 @@ import Router from './routes';
 
 function App() {
   return (
+    <>  <Helmet>
+    <title>Himalayan Leisure Inc. pvt. Limited</title>
+    <meta name="description" content="Himalayan Leisure Inc. pvt. Limited" />
+</Helmet>
     <ThemeProvider theme={theme}>
+    
       <SnackbarProvider
         maxSnack={1}
         preventDuplicate
@@ -31,7 +37,8 @@ function App() {
       >
         <Router/>
       </SnackbarProvider>
-    </ThemeProvider>
+    </ThemeProvider></>
+  
   );
 }
 // function SnackbarIcon({ icon, color }) {

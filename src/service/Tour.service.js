@@ -6,6 +6,15 @@ const API = axios.create({
 
 const tourApi = {}
 
+tourApi.tourList = async () => {
+  try {
+    const res = await API.get(`tours`);
+    return res;
+  } catch (error) {
+    return error.response;
+  }
+}
+
 tourApi.tourDetailsBySlug = async (slug) => {
   try {
     const res = await API.get(`tour/${slug}`);
