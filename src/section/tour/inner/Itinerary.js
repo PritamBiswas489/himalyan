@@ -101,14 +101,14 @@ const Itinerary = (props) => {
                     {Object.entries(tour.get_itinerary).length > 0 ? (
                         <>
                             {tour.get_itinerary.map((element, index) => (
-                                <Box
+                                <Box className='itineraryInner'
                                     sx={{
                                         width: '100%',
                                         position: 'relative',
                                         padding: '20px 0 20px 100px',
                                     }}
                                 >
-                                    <Box
+                                    <Box className='itineraryInnerAbsolute'
                                         sx={{
                                             textAlign: 'right',
                                             position: 'absolute',
@@ -164,7 +164,7 @@ const Itinerary = (props) => {
                                         mt={2}
                                         mb={2}
                                     >
-                                        <Grid xs={4}>
+                                        <Grid lg={4} md={6} sm={12} xs={12}>
                                             <ListItem className={classes.root}>
                                                 <ListItemAvatar>
                                                     <Avatar
@@ -182,7 +182,7 @@ const Itinerary = (props) => {
                                                 />
                                             </ListItem>
                                         </Grid>
-                                        <Grid xs={4}>
+                                        <Grid lg={4} md={6} sm={12} xs={12}>
                                             <ListItem className={classes.root}>
                                                 <ListItemAvatar>
                                                     <Avatar
@@ -200,7 +200,7 @@ const Itinerary = (props) => {
                                                 />
                                             </ListItem>
                                         </Grid>
-                                        <Grid xs={4}>
+                                        <Grid lg={4} md={6} sm={12} xs={12}>
                                             <ListItem className={classes.root}>
                                                 <ListItemAvatar>
                                                     <Avatar
@@ -251,11 +251,9 @@ const Itinerary = (props) => {
                                                 </ListItemIcon>
                                                 <ListItemText
                                                     sx={{ paddingLeft: '15px' }}
-                                                    primary={`Included standard meals (${
-                                                        element.breackfast ? 'Breakfast +' : ''
-                                                    }${element.lunch ? 'Lunch +' : ''}${
-                                                        element.dinner ? 'Dinner' : ''
-                                                    })`}
+                                                    primary={`Included standard meals (${element.breackfast ? 'Breakfast +' : ''
+                                                        }${element.lunch ? 'Lunch +' : ''}${element.dinner ? 'Dinner' : ''
+                                                        })`}
                                                 />
                                             </ListItem>
                                         </List>

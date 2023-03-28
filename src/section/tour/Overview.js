@@ -128,9 +128,8 @@ const Overview = (props) => {
     <>
       <Box sx={{ flexGrow: 1, background: '#ebebeb' }} className='overViewArea'>
         <Box sx={{ flexGrow: 1 }} className='ph-80'>
-          <Grid container padding={3}>
+          <Grid container spacing={{ xs: 1, md: 1, lg: 3 }} padding={{ xs: 1, md: 1, lg: 3 }}>
             <Grid flexGrow={1}>
-
               <ul className='d-flex flex-wrap'>
                 <li><a className='active-scroll-spy' onClick={(e) => onPress(e)} href="#section-1" data-to-scrollspy-id="section-1"><ContentPasteSearchIcon /> Overview</a></li>
                 <li><a onClick={(e) => onPress(e)} href="#section-2" data-to-scrollspy-id="section-2"><BrightnessHighIcon /> Highlights</a></li>
@@ -141,12 +140,12 @@ const Overview = (props) => {
                 <li><a onClick={(e) => onPress(e)} href="#section-7" data-to-scrollspy-id="section-7"><OutlinedFlagIcon /> FAQ</a></li>
               </ul>
             </Grid>
-            <Grid sx={'auto'} container spacing={3}>
+            <Grid sx={'auto'} container spacing={0} alignItems={'center'}>
               <Grid item xs="auto" className="pericePersonDd">
                 {tour.priceType === 'perPerson' ? (
                   <Stack direction="row" spacing={2}>
                     <div>
-                      {tour.price !== null ? 
+                      {tour.price !== null ?
                         <Button className='fromUsppBtn'
                           ref={anchorRef}
                           id="composition-button"
@@ -155,9 +154,9 @@ const Overview = (props) => {
                           aria-haspopup="true"
                           onClick={handleToggle}
                         >
-                            <span>From</span> {tour.price === price ? '' : <span className='lineThrough ltProperties'>USD {tour.price}</span>} USD {tour.price === price ? tour.price : price}
-                            <KeyboardArrowDownIcon />
-                        </Button>: ''}
+                          <span>From</span> {tour.price === price ? '' : <span className='lineThrough ltProperties'>USD {tour.price}</span>} USD {tour.price === price ? tour.price : price}
+                          <KeyboardArrowDownIcon />
+                        </Button> : ''}
                       <Popper className='ddMenu'
                         open={open}
                         anchorEl={anchorRef.current}
@@ -257,15 +256,15 @@ const Overview = (props) => {
                   </Stack>
                 ) : (<Stack direction="row" spacing={2}>
                   <div>
-                  {tour.price !== null ? 
-                    <Button className='fromUsppBtn'>
-                      <span>From</span> {tour.price === price ? '' : <span className='lineThrough ltProperties'>USD {tour.price}</span>} USD {tour.price === price ? tour.price : price}
-                    </Button> : ''}
+                    {tour.price !== null ?
+                      <Button className='fromUsppBtn'>
+                        <span>From</span> {tour.price === price ? '' : <span className='lineThrough ltProperties'>USD {tour.price}</span>} USD {tour.price === price ? tour.price : price}
+                      </Button> : ''}
                   </div>
                 </Stack>)}
               </Grid>
               <Grid item xs="auto">
-                <ColorButton variant="contained" className="LearnMoreBtn">Enquiry now</ColorButton>
+                <ColorButton variant="contained" className="LearnMoreBtn enquiryNow">Enquiry now</ColorButton>
               </Grid>
             </Grid>
           </Grid>
@@ -274,7 +273,7 @@ const Overview = (props) => {
       <Box sx={{ flexGrow: 1, }}>
         {props.tour && props.tour.noticeMsg !== null ? <Alert icon={false}>{props.tour?.noticeMsg}</Alert> : ''}
       </Box>
-      <Box sx={{ flexGrow: 1, }} className=''>
+      <Box sx={{ flexGrow: 1, }} className='ovrLeftMd'>
         <Box sx={{ flexGrow: 1 }} className='ph-80'>
           <Grid container spacing={3} padding={3}>
             <Grid item xs={12} md={8}>

@@ -83,7 +83,7 @@ const Tourpackage = (props) => {
                       <Grid item xs={12} sm={5}>
                         <div className='tourPacLeft' style={{ background: `url(${props.home.get_best_selling_one ? `${process.env.REACT_APP_HOST_IMAGE}image/tour/bannerThumb/${props.home.get_best_selling_one.bannerThumb}` : ''}) center center no-repeat` }}>
                           <div class="dolerPp">
-                            {props.home.get_best_selling_one.price === bestSellingOnePrice || props.home.get_best_selling_one.price === null? <h6>From</h6> : <h6>From <span>${props.home.get_best_selling_one.price}</span></h6>}
+                            {props.home.get_best_selling_one.price === bestSellingOnePrice || props.home.get_best_selling_one.price === null ? <h6>From</h6> : <h6>From <span>${props.home.get_best_selling_one.price}</span></h6>}
                             <h5>USD {bestSellingOnePrice}</h5>
                           </div>
                         </div>
@@ -167,8 +167,8 @@ const Tourpackage = (props) => {
                       <Grid item xs={12} sm={5}>
                         <div className='tourPacLeft' style={{ background: `url(${props.home.get_best_selling_two ? `${process.env.REACT_APP_HOST_IMAGE}image/tour/bannerThumb/${props.home.get_best_selling_two.bannerThumb}` : ''}) center center no-repeat` }}>
                           <div class="dolerPp">
-                            {props.home.get_best_selling_two.price === bestSellingTwoPrice || props.home.get_best_selling_two.price === null? <h6>From</h6> : <h6>From <span>${props.home.get_best_selling_two.price}</span></h6>}
-                             
+                            {props.home.get_best_selling_two.price === bestSellingTwoPrice || props.home.get_best_selling_two.price === null ? <h6>From</h6> : <h6>From <span>${props.home.get_best_selling_two.price}</span></h6>}
+
                             <h5>USD {bestSellingTwoPrice}</h5>
                           </div>
                         </div>
@@ -238,7 +238,9 @@ const Tourpackage = (props) => {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <TourSlider setting={props.setting} home={home} />
+                  <Box className='tourSliderMd'>
+                    <TourSlider setting={props.setting} home={home} />
+                  </Box>
                 </Grid>
               </Grid>
             </Box>

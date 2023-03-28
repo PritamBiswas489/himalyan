@@ -9,9 +9,9 @@ const ContactTwo = ({ content }) => {
         <>
             <Box sx={{ flexGrow: 1 }} className='aboutSec-2 relative'>
                 <Box sx={{ flexGrow: 1 }} className='ph-80'>
-                    <Grid container spacing={3} padding={3} alignItems={'center'}>
-                        <Grid item xs={12} md={6}>
-                            <Box sx={{ marginBottom: '20px' }}>
+                    <Grid container spacing={{ xs: 2, md: 3, lg: 3 }} padding={{ xs: 2, md: 3, lg: 3 }} alignItems={'center'}>
+                        <Grid item xs={12} sm={6} md={6} lg={6}>
+                            <Box sx={{ marginBottom: '20px', }}>
                                 <Typography variant='h6_df' display={'block'}>
                                     {content?.content?.section2_title}
                                 </Typography>
@@ -73,7 +73,7 @@ const ContactTwo = ({ content }) => {
                                         </Typography>
                                         <Typography variant='subtitle1' color='text.secondary' component='div'>
                                             {parse(content?.content?.section2_item2_content ?? '')}
-                                            <br/>
+                                            <br />
                                             {parse(content?.content?.section2_item2_content32 ?? '')}
                                         </Typography>
                                     </CardContent>
@@ -120,7 +120,7 @@ const ContactTwo = ({ content }) => {
                                 </Box>
                             </Card>
                         </Grid>
-                        <Grid item xs={12} md={6} className='missionImg'>
+                        <Grid item xs={12} sm={6} md={6} lg={6} className='missionImg'>
                             <Box
                                 sx={{
                                     display: 'flex',

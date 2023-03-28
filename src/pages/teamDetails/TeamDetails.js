@@ -59,15 +59,15 @@ const TeamDetails = () => {
             ></Box>
             <Box sx={{ flexGrow: 1 }} className='ph-80 blogArea'>
                 {/* <Container> */}
-                <Grid container spacing={3} padding={3}>
-                    <Grid sx={12} sm={12} md={9} lg={9}>
-                        <Box
+                <Grid container spacing={{ xs: 2, md: 3, lg: 5 }} padding={{ xs: 2, md: 3 }}>
+                    <Grid lg={9} md={9} sm={12} xs={12}>
+                        <Box className='teamDetailsWrap'
                             sx={{
                                 display: 'flex',
                                 flexWrap: 'wrap',
                                 width: '100%',
                                 boxShadow: '0px 0px 68px 0px rgba(0, 0, 0, 0.08)',
-                                padding: '3rem',
+                                // padding: '3rem',
                             }}
                         >
                             <Box className='personImg'>
@@ -184,7 +184,7 @@ const TeamDetails = () => {
                                             onMouseLeave={handleMouseLeave}
                                         >
                                             {parse(content?.content?.section2_item2_content ?? '')}
-                                             
+
                                         </Link>
                                     </Typography>
                                 </Box>
@@ -208,7 +208,7 @@ const TeamDetails = () => {
                                             onMouseEnter={handleMouseEnter}
                                             onMouseLeave={handleMouseLeave}
                                         >
-                                            
+
                                             {parse(content?.content?.section2_item2_content32 ?? '')}
                                         </Link>
                                     </Typography>
@@ -216,8 +216,12 @@ const TeamDetails = () => {
                             </Box>
                         </Box>
                     </Grid>
-                    <Grid sx={12} sm={12} md={3} lg={3}>
-                        <Box className='teamDtlsRight'>
+                    <Grid lg={3} md={3} sm={12} xs={12}>
+                        <Box className='teamDtlsRight'
+                            sx={{
+                                width: '100%',
+                            }}
+                        >
                             <WhyBook />
                             <CustomerSupport />
                         </Box>

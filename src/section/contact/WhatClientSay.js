@@ -64,7 +64,7 @@ const WhatClientSay = () => {
       <Box sx={{ flexGrow: 1 }} className='whatOurClientSay relative'>
         <Box sx={{ flexGrow: 1 }} className='ph-80'>
           <Grid container spacing={3} padding={3} alignItems={'center'}>
-            <Grid item xs={4} >
+            <Grid item lg={4} md={12} sm={12} xs={12} >
               <Paper sx={{ backgroundColor: "transparent", boxShadow: "none", textAlign: "center", padding: '50px' }} className='sectionTitle'>
                 <Typography variant="h6_df">
                   {data?.title}
@@ -77,7 +77,7 @@ const WhatClientSay = () => {
                 </Typography>
               </Paper>
             </Grid>
-            <Grid item xs={8} className="aboutSlider">
+            <Grid item lg={8} md={12} sm={12} xs={12} className="aboutSlider">
               <OwlCarousel className='owl-theme' {...ServiceExcellence}>
                 {reviewList.map((element, index) => (
                   <div class='item' key={index}>
@@ -88,7 +88,7 @@ const WhatClientSay = () => {
                             overlap="circular"
                             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                           >
-                            <Avatar alt="Travis Howard" src={`${process.env.REACT_APP_HOST_IMAGE}image/review/${element.image}`} sx={{ width: 84, height: 84 }} />
+                            <Avatar className='shadowPad' alt="Travis Howard" src={`${process.env.REACT_APP_HOST_IMAGE}image/review/${element.image}`} sx={{ width: 84, height: 84 }} />
                           </Badge>
                         </item>
                         <item className="pl-15">
@@ -117,9 +117,11 @@ const WhatClientSay = () => {
                           </Typography>
                         </item>
                       </List>
-                      <Typography variant="body2" color="text.secondary" sx={{ padding: 0, marginTop: 2 }}>
-                        {parse(element.review)}
-                      </Typography>
+                      <Box className='ovrScroll-2'>
+                        <Typography variant="body2" color="text.secondary" sx={{ padding: 0, marginTop: 2 }}>
+                          {parse(element.review)}
+                        </Typography>
+                      </Box>
 
                       <List component="div" sx={{ display: 'flex', justifyContent: "space-between", marginTop: "20px" }}>
                         <item>

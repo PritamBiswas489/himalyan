@@ -118,12 +118,12 @@ const Reviews = () => {
   const handleCountryChange = (event) => {
     setSelectCountry(event.target.value);
   };
-  const handleTourChange = (event) =>{
+  const handleTourChange = (event) => {
     alert(event.target.value);
     setSelectTour(event.target.value);
   }
 
-  
+
   const getClientSay = async () => {
     const clientSays = await reviewApi.list();
     if (clientSays.status === 200 && clientSays.data.status === 200 && clientSays.data.success === true) {
@@ -132,14 +132,14 @@ const Reviews = () => {
   }
   const getCountries = async () => {
     const countiesList = await countryApi.getCountries();
-    if (countiesList.status === 200  ) {
+    if (countiesList.status === 200) {
       await setCountries(countiesList.data.data);
     }
   }
   const getTourList = async () => {
     const tourList = await tourApi.tourList();
-    if (tourList.status === 200  ) {
-      
+    if (tourList.status === 200) {
+
       await setTours(tourList.data.data);
     }
   }
@@ -188,7 +188,7 @@ const Reviews = () => {
             marginTop: '1rem'
           }}>
             {/* No Review */}
-            <Masonry columns={3} spacing={{ xs: 1, sm: 2, md: 3 }}>
+            <Masonry columns={{ xs: 1, sm: 2, md: 2, lg: 3, }} spacing={{ xs: 1, sm: 2, md: 2, lg: 3, }}>
               {reviewList.map((element, index) => (
                 <Item key={index}>
                   <Card sx={{ padding: "15px", borderRadius: "20px;" }} className='clientSayBox'>
@@ -246,7 +246,7 @@ const Reviews = () => {
                 </Item>
               ))}
 
-          
+
             </Masonry>
           </Box>
         </CardContent>
@@ -293,14 +293,14 @@ const Reviews = () => {
                   color: '#444',
                 }}
               >
-                
+
                 Review
               </Typography>
             </Box>
             <Grid container spacing={3} sx={{ width: '100%' }}>
               <Grid item xs={12} sm={12} md={6} lg={6}>
 
-               
+
 
                 <Box
                   sx={{
@@ -334,11 +334,11 @@ const Reviews = () => {
                       label='Select Country'
                       onChange={handleCountryChange}
                     >
-                      {countries.map((country)=><MenuItem value={country.name}>{country.name}</MenuItem>)}
+                      {countries.map((country) => <MenuItem value={country.name}>{country.name}</MenuItem>)}
                     </Select>
                   </FormControl>
                 </Box>
-                
+
 
                 <Box
                   sx={{
@@ -355,7 +355,7 @@ const Reviews = () => {
                       label='Select Tour'
                       onChange={handleTourChange}
                     >
-                     {tours.map((tour)=><MenuItem value={tour.title}>{tour.title}</MenuItem>)}
+                      {tours.map((tour) => <MenuItem value={tour.title}>{tour.title}</MenuItem>)}
                     </Select>
                   </FormControl>
                 </Box>
@@ -408,7 +408,7 @@ const Reviews = () => {
                 </Box>
 
 
-               
+
               </Grid>
               <Grid item xs={12}>
                 <Box>

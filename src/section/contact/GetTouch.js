@@ -100,7 +100,7 @@ const GetTouch = () => {
         <>
             <Box sx={{ flexGrow: 1 }} className='relative'>
                 <Box sx={{ flexGrow: 1 }} className='ph-80'>
-                    <Grid container spacing={3} padding={3} alignItems={'center'}>
+                    <Grid container spacing={{ xs: 2, md: 3, lg: 3 }} padding={{ xs: 2, md: 3, lg: 3 }} alignItems={'center'}>
                         <Grid item xs={12} md={6}>
                             <Box>
                                 <iframe
@@ -115,7 +115,7 @@ const GetTouch = () => {
                                 />
                             </Box>
                         </Grid>
-                        <Grid item xs={12} md={6} className=''>
+                        <Grid item xs={12} md={6} className='' p={0}>
                             <Box>
                                 <Paper
                                     sx={{ backgroundColor: 'transparent', boxShadow: 'none', textAlign: 'center' }}

@@ -31,7 +31,7 @@ const Filter = (props) => {
   const [page, setPage] = useState('');
   const [setting, setSetting] = useState('');
 
-  useEffect(()=>{
+  useEffect(() => {
     if (props) {
       setFilterData([{ index: Math.random(), country: [], activity: [], difficulty: [], region: [props.region.id], price: '', duration: '', sortByName: '', sortByValue: '', review: '' }]);
       setTourData([]);
@@ -39,12 +39,12 @@ const Filter = (props) => {
       setPage('');
       handleFilterAPI();
     }
-  },[props]);
+  }, [props]);
   const handleFilter = async (event) => {
     let list = [...filterData];
     if (event.target.name === 'country') {
       if (event.target.checked) {
-        list[0][event.target.name] = [...list[0][event.target.name],Number(event.target.value)];
+        list[0][event.target.name] = [...list[0][event.target.name], Number(event.target.value)];
       } else {
         list[0][event.target.name] = list[0][event.target.name].filter(element => element !== Number(event.target.value));
       }
@@ -52,7 +52,7 @@ const Filter = (props) => {
 
     if (event.target.name === 'activity') {
       if (event.target.checked) {
-        list[0][event.target.name] = [...list[0][event.target.name],Number(event.target.value)];
+        list[0][event.target.name] = [...list[0][event.target.name], Number(event.target.value)];
       } else {
         list[0][event.target.name] = list[0][event.target.name].filter(element => element !== Number(event.target.value));
       }
@@ -60,7 +60,7 @@ const Filter = (props) => {
 
     if (event.target.name === 'difficulty') {
       if (event.target.checked) {
-        list[0][event.target.name] = [...list[0][event.target.name],Number(event.target.value)];
+        list[0][event.target.name] = [...list[0][event.target.name], Number(event.target.value)];
       } else {
         list[0][event.target.name] = list[0][event.target.name].filter(element => element !== Number(event.target.value));
       }
@@ -109,7 +109,7 @@ const Filter = (props) => {
   const handleFilterAPI = async (value) => {
     let filter = '';
     if (value) {
-      filter = await filterApi.filterByPagination(value,filterData);
+      filter = await filterApi.filterByPagination(value, filterData);
     } else {
       filter = await filterApi.filter(filterData);
     }
@@ -125,7 +125,7 @@ const Filter = (props) => {
     <>
       <Box sx={{ flexGrow: 1 }} className='filterWrap relative'>
         <Box sx={{ flexGrow: 1 }} className='ph-80'>
-          <Grid container spacing={3} padding={3}>
+          <Grid container spacing={3} padding={2}>
             <Grid item xs={12} md={3} sm={3} lg={3}>
               <Box className='filterLeft'>
                 <Typography variant='h5' style={{
@@ -145,12 +145,13 @@ const Filter = (props) => {
                     Country
                   </Typography>
                   <ul>
-                    {props.destination.map((element,index) => {
+                    {props.destination.map((element, index) => {
                       return (
-                      <li key={index}><FormControlLabel control={<Checkbox name='country' value={element.id} onChange={handleFilter} checked={filterData[0]['country'].find(country => country === element.id) === undefined ? false : true} />} label={element.name} /></li>
-                    )})}
+                        <li key={index}><FormControlLabel control={<Checkbox name='country' value={element.id} onChange={handleFilter} checked={filterData[0]['country'].find(country => country === element.id) === undefined ? false : true} />} label={element.name} /></li>
+                      )
+                    })}
                   </ul>
-                </Box>:''}
+                </Box> : ''}
                 {props.activity ? <Box className='filterLeftInner'>
                   <Typography variant='h6' display={'block'} style={{
                     fontWeight: '700',
@@ -160,13 +161,14 @@ const Filter = (props) => {
                     Activity
                   </Typography>
                   <ul>
-                    {props.activity.map((element,index) => {
+                    {props.activity.map((element, index) => {
                       return (
-                      <li key={index}><FormControlLabel control={<Checkbox name='activity' value={element.id} onChange={handleFilter} checked={filterData[0]['activity'].find(activity => activity === element.id) === undefined ? false : true} />} label={element.name} /></li>
-                    )})}
+                        <li key={index}><FormControlLabel control={<Checkbox name='activity' value={element.id} onChange={handleFilter} checked={filterData[0]['activity'].find(activity => activity === element.id) === undefined ? false : true} />} label={element.name} /></li>
+                      )
+                    })}
                   </ul>
-                </Box>:''}
-                
+                </Box> : ''}
+
                 <Box className='filterLeftInner'>
                   <Typography variant='h6' display={'block'} style={{
                     fontWeight: '700',
@@ -183,7 +185,7 @@ const Filter = (props) => {
                     <li><FormControlLabel control={<Checkbox name='price' value='2001' onChange={handleFilter} checked={filterData[0]['price'] === '2001' ? true : false} />} label="Above $2001" /></li>
                   </ul>
                 </Box>
-                {props.difficulty?<Box className='filterLeftInner'>
+                {props.difficulty ? <Box className='filterLeftInner'>
                   <Typography variant='h6' display={'block'} style={{
                     fontWeight: '700',
                     fontFamily: 'Montserrat',
@@ -196,7 +198,7 @@ const Filter = (props) => {
                       <li key={index}><FormControlLabel control={<Checkbox name='difficulty' value={element.id} onChange={handleFilter} checked={filterData[0]['difficulty'].find(difficulty => difficulty === element.id) === undefined ? false : true} />} label={element.name} /></li>
                     ))}
                   </ul>
-                </Box>:''}
+                </Box> : ''}
                 <Box className='filterLeftInner'>
                   <Typography variant='h6' display={'block'} style={{
                     fontWeight: '700',
@@ -346,65 +348,66 @@ const Filter = (props) => {
               <Box className='' mt={2}>
                 <Grid container direction="row" spacing={2} padding={0}>
                   {tourData.length > 0 ? (<>
-                    {tourData.map((element, index)=> {
-                      let price =0;
+                    {tourData.map((element, index) => {
+                      let price = 0;
                       if (setting) {
                         const currentDate = new Date();
                         const discountStartDate = new Date(setting.discountStartDate);
                         const discountEndDate = new Date(setting.discountEndDate);
                         if (currentDate.getTime() >= discountStartDate.getTime() && currentDate.getTime() <= discountEndDate.getTime() && setting.globalDiscount > element.discount) {
-                          price = element.price -  Number(((element.price * setting.globalDiscount) / 100).toFixed(2));
+                          price = element.price - Number(((element.price * setting.globalDiscount) / 100).toFixed(2));
                         } else {
-                          price = element.price -  Number(((element.price * element.discount) / 100).toFixed(2));
+                          price = element.price - Number(((element.price * element.discount) / 100).toFixed(2));
                         }
                       } else {
-                        price = element.price -  Number(((element.price * element.discount) / 100).toFixed(2));
+                        price = element.price - Number(((element.price * element.discount) / 100).toFixed(2));
                       }
                       return (
-                      <Grid key={index} item xs={12} md={4} sm={6} lg={4}>
-                        <Paper sx={{ boxShadow: "none", backgroundColor: 'transparent' }} className="popularToursSlider">
-                          <div className="ptsWrapTop relative">
-                            <img src={`${process.env.REACT_APP_HOST_IMAGE}image/tour/bannerThumb/${element.bannerThumb}`} alt={element.bannerThumb} />
-                            {/* <span className='newSpan bgGreen'>New</span> */}
-                            {element.get_ribbon ? <span className={index % 2 === 0 ? 'newSpan bgGreen' : 'newSpan bgParple'}>{element.get_ribbon.name}</span> : ''}
-                            <div className='dolerPp'>
-                              {element.price === price || element.price === null ? '' : <h6>From <span>${element.price}</span></h6>}
-                              <h5>USD {price}</h5>
+                        <Grid key={index} item xs={12} md={4} sm={6} lg={4} padding={0}>
+                          <Paper sx={{ boxShadow: "none", backgroundColor: 'transparent' }} className="popularToursSlider">
+                            <div className="ptsWrapTop relative">
+                              <img src={`${process.env.REACT_APP_HOST_IMAGE}image/tour/bannerThumb/${element.bannerThumb}`} alt={element.bannerThumb} />
+                              {/* <span className='newSpan bgGreen'>New</span> */}
+                              {element.get_ribbon ? <span className={index % 2 === 0 ? 'newSpan bgGreen' : 'newSpan bgParple'}>{element.get_ribbon.name}</span> : ''}
+                              <div className='dolerPp'>
+                                {element.price === price || element.price === null ? '' : <h6>From <span>${element.price}</span></h6>}
+                                <h5>USD {price}</h5>
+                              </div>
                             </div>
-                          </div>
-                          <div className='ptsWrap'>
-                            <h4><Link to={`/${element.get_destination.slug}/${element.slug}`}>{element.title}</Link></h4>
-                            <div className='ptsInner'>
-                            {parse(element.description).length > 0 ? parse(element.description)[0].props.children.slice(0, 165):parse(element.description).props.children.slice(0, 165)}
-                              {/* {parse(element.description).props.children.slice(0, 150)} */}
-                              <Box mt={1}>
-                                <List component={Stack} direction="row" className='dudiAct'>
-                                  <ListItem disablePadding sx={{ pr: '0' }}>
-                                    <span><img src="../images/icon/duration.svg" alt="" /></span> {element.duration} {element.duration > 1 ? 'days' :'day'}
-                                  </ListItem>
-                                  <ListItem disablePadding>
-                                    <span><img src="../images/icon/difficulty.svg" alt="" /></span> {element.get_difficulty.name}
-                                  </ListItem>
-                                  <ListItem disablePadding>
-                                    <span><img src="../images/icon/activity.svg" alt="" /></span>{element.get_activities.name}
-                                  </ListItem>
-                                </List>
-                              </Box>
-                              <Box className='starRateMd'>
-                                <ul className='d-flex align-items-center justify-content-between'>
-                                  <li>
-                                    <Stack spacing={1}>
-                                      <Rating defaultValue={0} value={element.average_rating === null ? 0 : element.average_rating} size="small" readOnly precision={0.5} />
-                                    </Stack>
-                                  </li>
-                                  <li><span>5.0&nbsp;</span>of<strong>&nbsp;{element.get_reviews.length} Reviews</strong></li>
-                                </ul>
-                              </Box>
+                            <div className='ptsWrap'>
+                              <h4><Link to={`/${element.get_destination.slug}/${element.slug}`}>{element.title}</Link></h4>
+                              <div className='ptsInner'>
+                                {parse(element.description).length > 0 ? parse(element.description)[0].props.children.slice(0, 165) : parse(element.description).props.children.slice(0, 165)}
+                                {/* {parse(element.description).props.children.slice(0, 150)} */}
+                                <Box mt={1}>
+                                  <List component={Stack} direction="row" className='dudiAct'>
+                                    <ListItem disablePadding sx={{ pr: '0' }}>
+                                      <span><img src="../images/icon/duration.svg" alt="" /></span> {element.duration} {element.duration > 1 ? 'days' : 'day'}
+                                    </ListItem>
+                                    <ListItem disablePadding>
+                                      <span><img src="../images/icon/difficulty.svg" alt="" /></span> {element.get_difficulty.name}
+                                    </ListItem>
+                                    <ListItem disablePadding>
+                                      <span><img src="../images/icon/activity.svg" alt="" /></span>{element.get_activities.name}
+                                    </ListItem>
+                                  </List>
+                                </Box>
+                                <Box className='starRateMd'>
+                                  <ul className='d-flex align-items-center justify-content-between'>
+                                    <li>
+                                      <Stack spacing={1}>
+                                        <Rating defaultValue={0} value={element.average_rating === null ? 0 : element.average_rating} size="small" readOnly precision={0.5} />
+                                      </Stack>
+                                    </li>
+                                    <li><span>5.0&nbsp;</span>of<strong>&nbsp;{element.get_reviews.length} Reviews</strong></li>
+                                  </ul>
+                                </Box>
+                              </div>
                             </div>
-                          </div>
-                        </Paper>
-                      </Grid>
-                    )})}
+                          </Paper>
+                        </Grid>
+                      )
+                    })}
                   </>) : ''}
                 </Grid>
               </Box>
@@ -422,7 +425,7 @@ const Filter = (props) => {
             </Grid>
           </Grid>
         </Box>
-      </Box> 
+      </Box>
     </>
   )
 }

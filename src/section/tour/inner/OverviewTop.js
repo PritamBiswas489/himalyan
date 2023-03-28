@@ -24,16 +24,16 @@ const OverviewTop = (props) => {
 
   return (
     <>
-      <Card sx={{
-        width: '100%',
-        display: 'flex',
-        boxShadow: 'none',
-        border: '#ddd 1px solid',
-      }}>
-        <Box
+      <Card className='overviewTopBox'
+        sx={{
+          width: '100%',
+          display: 'flex',
+          boxShadow: 'none',
+          border: '#ddd 1px solid',
+          flexWrap: 'wrap'
+        }}>
+        <Box className='overviewTopBoxLeft'
           sx={{
-            maxWidth: '200px',
-            flex: '0 0 200px',
             borderRight: '#ddd 1px solid'
           }}
         >
@@ -132,10 +132,10 @@ const OverviewTop = (props) => {
             </Link>
           </Paper>
         </Box>
-        <Box flexGrow={1} >
+        <Box className='overviewTopBoxRight' >
           <Grid container padding={3} spacing={{ xs: 3, md: 4.1 }}>
             {tour.get_difficulty ? (
-              <Grid xs={12} md={6}
+              <Grid xs={12} sm={12} md={6} lg={6}
                 sx={{
                   display: 'flex',
                   alignItems: 'center',
@@ -180,7 +180,7 @@ const OverviewTop = (props) => {
               </Grid>
             ) : ''}
             {tour.maxElevation ? (
-              <Grid xs={12} md={6}
+              <Grid xs={12} sm={12} md={6} lg={6}
                 sx={{
                   display: 'flex',
                   alignItems: 'center',

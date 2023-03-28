@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { MdPlayArrow } from 'react-icons/md';
 import { SlCalender } from 'react-icons/sl';
 
-import { blogListService,blogCategoryService } from '../../service/Blog.service';
+import { blogListService, blogCategoryService } from '../../service/Blog.service';
 import moment from 'moment';
 
 const Blog = () => {
@@ -20,20 +20,20 @@ const Blog = () => {
 
     const [selectedCat, setSelectedCat] = React.useState(0);
 
-    const handleChange = (event) => { 
+    const handleChange = (event) => {
         setSelectedCat(event.target.value);
     };
 
 
     useEffect(() => {
         getBlog();
-    }, [page,selectedCat]);
+    }, [page, selectedCat]);
     useEffect(() => {
         getBlogCategory();
     }, []);
 
     const getBlog = async () => {
-        const blog = await blogListService(page,selectedCat);
+        const blog = await blogListService(page, selectedCat);
         if (blog.status === 200) {
             setBlog(blog.data.data.records);
             setBlogMeta(blog.data.data.meta);
@@ -47,7 +47,7 @@ const Blog = () => {
         }
     }
 
-   
+
     return (
         <>
             <Box className='blogBanner' style={{ background: 'url(../images/blog.jpg) top center no-repeat' }}></Box>
@@ -66,9 +66,9 @@ const Blog = () => {
                             <MenuItem value="0">
                                 <em>None</em>
                             </MenuItem>
-                            {blogCategories.map((cat)=><MenuItem value={cat['id']}>{cat['cat_name']}</MenuItem>)}
-                            
-                            
+                            {blogCategories.map((cat) => <MenuItem value={cat['id']}>{cat['cat_name']}</MenuItem>)}
+
+
                         </Select>
                     </FormControl>
                 </div>
@@ -87,7 +87,6 @@ const Blog = () => {
                                 variant='subtitle1'
                                 sx={{
                                     fontFamily: 'Montserrat',
-                                    fontSize: '16px',
                                 }}
                             >
                                 What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -121,7 +120,7 @@ const Blog = () => {
                                         {moment(val.created_at).format('LL')}
                                     </Typography>
                                     <Typography
-                                        variant='body1'
+                                        variant='body2'
                                         dangerouslySetInnerHTML={{ __html: val.content.substr(0, 300) + ' ...' }}
                                     ></Typography>
                                     <Typography variant='subtitle2'>

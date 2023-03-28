@@ -23,10 +23,15 @@ const boxSX = {
     fontFamily: 'Montserrat',
     letterSpacing: '1px',
     marginBottom: '5px',
+    textTransform: 'uppercase',
     '&:hover': {
-        color: '#f00',
+        color: '#F97150',
         background: '#fff',
     },
+    '@media (max-width: 780px)': {
+
+        fontSize: '13px',
+    }
 };
 
 const styles = {
@@ -79,12 +84,11 @@ const QuickNavigation = () => {
                 <Box sx={{ flexGrow: 1 }} className='ph-80'>
                     <Grid container spacing={3} padding={3}>
                         <Grid item xs={12} md={4}>
-                            <Card sx={{ width: '100%', padding: '60px 40px' }}>
+                            <Card className='quickNavigationArea'
+                                sx={{ width: '100%', }}>
                                 <CardContent>
                                     <Typography
                                         variant='h4'
-                                        component='div'
-                                        mb={3}
                                         sx={{
                                             fontWeight: 'bold',
                                             fontFamily: 'Montserrat',
@@ -93,7 +97,7 @@ const QuickNavigation = () => {
                                     >
                                         Quick Navigation
                                     </Typography>
-                                    <MenuList>
+                                    <MenuList className='quickNavigationList'>
                                         {category.map((val, i) => (
                                             <MenuItem
                                                 sx={boxSX}
@@ -128,7 +132,7 @@ const QuickNavigation = () => {
                                     </button> */}
                                 </div>
                             </Box>
-                            <Box
+                            <Box className='accordionArea'
                                 sx={{
                                     minHeight: '280px',
                                 }}
@@ -145,13 +149,7 @@ const QuickNavigation = () => {
                                         // aria-controls="panel1bh-content"
                                         // id="panel1bh-header"
                                         >
-                                            <Typography
-                                                sx={{
-                                                    fontSize: '20px',
-                                                    fontWeight: 'bold',
-                                                    padding: '12px 16px',
-                                                }}
-                                            >
+                                            <Typography className='accordionList'>
                                                 {val.question}
                                             </Typography>
                                         </AccordionSummary>

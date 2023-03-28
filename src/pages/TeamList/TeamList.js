@@ -50,11 +50,11 @@ const TeamList = () => {
     }));
     return (
         <>
-            <Box className='contentPageBann' style={{ background: 'url('+process.env.REACT_APP_HOST_IMAGE+'image/team/'+content?.content?.image_header+') top center no-repeat' }}></Box>
+            <Box className='contentPageBann' style={{ background: 'url(' + process.env.REACT_APP_HOST_IMAGE + 'image/team/' + content?.content?.image_header + ') top center no-repeat' }}></Box>
             <Box sx={{ flexGrow: 1 }}>
                 <Container maxWidth='lg'>
-                    <Grid container spacing={3} padding={3}>
-                        <Grid sx={12} sm={12} md={8} lg={8}>
+                    <Grid container spacing={3} padding={3} className={'teamDescMd'}>
+                        <Grid sx={12} sm={8} md={8} lg={8}>
                             <Box
                                 className='teamIntro'
                                 sx={{
@@ -110,21 +110,26 @@ const TeamList = () => {
                                 ></Typography>
                             </Box>
 
-                            <Box
+                            <Box className='killsBtm'
                                 sx={{
                                     maxWidth: '600px',
                                     width: '100%',
                                     margin: '4rem 0 6rem',
                                 }}
                             >
-                                <Grid container spacing={3} padding={0}>
+                                <Grid container spacing={3} padding={0}
+                                // sx={{
+                                //     width: '100%',
+                                // }}
+                                >
                                     {item.map((val, i) => (
-                                        <Grid sx={12} sm={6} md={6} lg={6}>
+                                        <Grid sx={6} sm={6} md={6} lg={6}>
                                             <Box
                                                 sx={{
                                                     boxShadow: '0px 0px 68px 0px rgba(0, 0, 0, 0.08)',
                                                     padding: '3rem 2rem',
                                                     textAlign: 'center',
+                                                    width: '100%',
                                                 }}
                                             >
                                                 <Avatar
@@ -474,14 +479,14 @@ const TeamList = () => {
                                     }}
                                 >
                                     <Link to={'/contact'}>
-                                    <ColorButton variant='contained' className=''>
-                                        Hire me
-                                    </ColorButton>
+                                        <ColorButton variant='contained' className=''>
+                                            Hire me
+                                        </ColorButton>
                                     </Link>
                                 </Box>
                             </Box>
                         </Grid>
-                        <Grid sx={12} sm={12} md={4} lg={4}>
+                        <Grid sx={12} sm={4} md={4} lg={4} className='singleImgArea'>
                             <Box className='singleImg'>
                                 <img src={`${process.env.REACT_APP_HOST_IMAGE}image/team/${content?.content?.image}`} alt='' />
                             </Box>
@@ -567,7 +572,7 @@ const TeamList = () => {
                                     >
                                         {val.sub_title}
                                     </Typography>
-                                    
+
                                     <Link className='redMore' to={`/team/${val.slug}`}>
                                         Read More <BsArrowRightCircle />
                                     </Link>

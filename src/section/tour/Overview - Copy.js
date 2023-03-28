@@ -5,12 +5,12 @@ import {
   Tabs,
   Tab,
   Paper,
-  Button, 
+  Button,
   ClickAwayListener,
-  FormControl, 
-  Grow, 
-  Popper, 
-  Typography, 
+  FormControl,
+  Grow,
+  Popper,
+  Typography,
   Stack,
   Table,
   TableBody,
@@ -18,7 +18,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
- } from '@mui/material';
+} from '@mui/material';
 import OutlinedFlagIcon from '@mui/icons-material/OutlinedFlag';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -174,7 +174,7 @@ const Overview = (props) => {
                                     </Box>
                                     <Grid container spacing={3} padding={3} xs={12} className='offerDiscountTable'>
                                       <TableContainer component={Paper} style={{
-                                        boxShadow:'none',
+                                        boxShadow: 'none',
                                       }}>
                                         <Table style={{ Width: '100%' }} aria-label="simple table">
                                           <TableHead>
@@ -184,17 +184,17 @@ const Overview = (props) => {
                                             </TableRow>
                                           </TableHead>
                                           <TableBody>
-                                          {tour.get_per_person_price.map((element, index) => (
-                                            <TableRow
-                                              key={index}
-                                              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                            >
-                                              <TableCell component="th" scope="row" >
-                                                {element.minPerson} {element.maxPerson? `- ${element.maxPerson}`: ''}  Paxes
-                                              </TableCell>
-                                              <TableCell>US $ {element.price}</TableCell>
-                                            </TableRow>
-                                          ))}
+                                            {tour.get_per_person_price.map((element, index) => (
+                                              <TableRow
+                                                key={index}
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                              >
+                                                <TableCell component="th" scope="row" >
+                                                  {element.minPerson} {element.maxPerson ? `- ${element.maxPerson}` : ''}  Paxes
+                                                </TableCell>
+                                                <TableCell>US $ {element.price}</TableCell>
+                                              </TableRow>
+                                            ))}
                                           </TableBody>
                                         </Table>
                                       </TableContainer>
@@ -209,12 +209,12 @@ const Overview = (props) => {
                     </div>
                   </Stack>
                 ) : (<Stack direction="row" spacing={2}>
-                <div>
-                  <Button className='fromUsppBtn'>
-                    <span>From</span> US ${tour.price} <sub>pp</sub>
-                  </Button>
-                </div>
-              </Stack>)}
+                  <div>
+                    <Button className='fromUsppBtn'>
+                      <span>From</span> US ${tour.price} <sub>pp</sub>
+                    </Button>
+                  </div>
+                </Stack>)}
               </Grid>
               <Grid item xs="auto">
                 <ColorButton variant="contained" className="LearnMoreBtn">Enquiry now</ColorButton>

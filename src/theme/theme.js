@@ -29,7 +29,10 @@ theme = createTheme(theme, {
         h3_hoabout: {
             fontWeight: "bold",
             fontFamily: "Montserrat",
-            fontSize: "40px",
+            fontSize: "1.563rem",
+            '@media (min-width:768px)': {
+                fontSize: '2.5rem',
+            },
         },
         h3: {
             fontSize: '1.2rem',
@@ -41,10 +44,10 @@ theme = createTheme(theme, {
             },
         },
         h3_package: {
-            fontSize: '1.2rem',
+            fontSize: '1rem',
             fontWeight: "bold",
             fontFamily: "Montserrat",
-            '@media (min-width:600px)': {
+            '@media (min-width:768px)': {
                 fontSize: '1.3rem',
             },
             [theme.breakpoints.up('md')]: {
@@ -62,7 +65,7 @@ theme = createTheme(theme, {
         h5: {
             fontWeight: "bold",
             fontFamily: "Montserrat",
-            fontSize: "20px",
+            fontSize: "16px",
             '@media (min-width:1366px)': {
                 fontSize: '25px',
             },

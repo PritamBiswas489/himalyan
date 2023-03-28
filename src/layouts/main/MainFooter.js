@@ -44,7 +44,7 @@ const Footer = () => {
                 <Box sx={{ flexGrow: 1 }} className='ph-80'>
                     <Grid container spacing={3} padding={3}>
                         <Grid item xs={12} md={2}>
-                            <Box>
+                            <Box className='fLogo'>
                                 <img
                                     style={{
                                         width: '100%',
@@ -68,7 +68,7 @@ const Footer = () => {
                                 </Typography>
                             </Box>
                         </Grid>
-                        <Grid item xs={12} md={8}>
+                        <Grid item xs={12} md={8} sm={8}>
                             <Grid container spacing={0} padding={0}>
                                 <Grid item xs={12}>
                                     <Typography
@@ -85,8 +85,8 @@ const Footer = () => {
                                         Useful link:
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={12} md={4}>
-                                    <List sx={{ width: '100%' }}>
+                                <Grid item xs={4} sm={4} md={4}>
+                                    <List className='listItem' sx={{ width: '100%' }}>
                                         <ListItem disablePadding>
                                             <ListItemButton>
                                                 <Link to='/destination'>
@@ -118,8 +118,8 @@ const Footer = () => {
                                     </List>
                                 </Grid>
 
-                                <Grid item xs={12} md={4}>
-                                    <List sx={{ width: '100%' }}>
+                                <Grid item xs={4} sm={4} md={4}>
+                                    <List className='listItem' sx={{ width: '100%' }}>
                                         {data && data.columnThree ? (
                                             <>
                                                 {JSON.parse(data.columnThree).map((element, index) => (
@@ -140,8 +140,8 @@ const Footer = () => {
                                         )}
                                     </List>
                                 </Grid>
-                                <Grid item xs={12} md={4}>
-                                    <List sx={{ width: '100%' }}>
+                                <Grid item xs={4} sm={4} md={4}>
+                                    <List className='listItem' sx={{ width: '100%' }}>
                                         {data && data.columnFour ? (
                                             <>
                                                 {JSON.parse(data.columnFour).map((element, index) => (
@@ -164,7 +164,7 @@ const Footer = () => {
                                 </Grid>
                             </Grid>
                         </Grid>
-                        <Grid item xs={12} md={2} className='contactObjectfit'>
+                        <Grid item xs={12} md={2} sm={4} className='contactObjectfit fContact'>
                             <Typography
                                 variant='h5'
                                 disablePadding
@@ -354,7 +354,7 @@ const Footer = () => {
                             >
                                 {data?.weAcceptedText}:
                             </Typography>
-                            <Box>
+                            <Box className='imgCon'>
                                 <img
                                     src={`${process.env.REACT_APP_HOST_IMAGE}image/footerPage/weaccepted/${data?.weAcceptedImage}`}
                                     alt={data?.weAcceptedImage}
